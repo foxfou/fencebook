@@ -22,8 +22,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build Next.js
+      - name: Build (static export to out/)
         run: npm run build
 
-      - name: Build for Cloudflare Workers
-        run: npx opennextjs-cloudflare build
+      - name: Check the Cloudflare deploy (dry run)
+        run: npx wrangler deploy --dry-run

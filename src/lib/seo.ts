@@ -3,21 +3,33 @@ import { locales } from "./i18n";
 import { BRAND } from "./site";
 import type { Locale } from "./types";
 
-/** Open Graph for a page. The brand goes to siteName, so the title stays short. Images come from opengraph-image files. */
-export function openGraph(opts: {
+/** Open Graph and Twitter tags for a page. The brand goes to siteName, so the title stays short.
+ *  `image` is the path of the page's og.png route. */
+export function shareTags(opts: {
   locale: Locale;
   title: string;
   description?: string;
   path: string;
-}): NonNullable<Metadata["openGraph"]> {
+  image: string;
+}): Pick<Metadata, "openGraph" | "twitter"> {
+  const image = { url: opts.image, width: 1200, height: 630, alt: opts.title, type: "image/png" };
   return {
-    type: "website",
-    siteName: BRAND,
-    title: opts.title,
-    description: opts.description,
-    url: opts.path,
-    locale: opts.locale === "ru" ? "ru_RU" : "en_US",
-    alternateLocale: opts.locale === "ru" ? ["en_US"] : ["ru_RU"],
+    openGraph: {
+      type: "website",
+      siteName: BRAND,
+      title: opts.title,
+      description: opts.description,
+      url: opts.path,
+      locale: opts.locale === "ru" ? "ru_RU" : "en_US",
+      alternateLocale: opts.locale === "ru" ? ["en_US"] : ["ru_RU"],
+      images: [image],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: opts.title,
+      description: opts.description,
+      images: [opts.image],
+    },
   };
 }
 

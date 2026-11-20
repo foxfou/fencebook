@@ -3,6 +3,9 @@ import { items } from "@/lib/catalog";
 import { locales } from "@/lib/i18n";
 import { siteUrl } from "@/lib/site";
 
+// Static export: route handlers must be marked static explicitly.
+export const dynamic = "force-static";
+
 /** All language versions of a path, plus x-default (Russian). */
 function languages(path: string) {
   return {

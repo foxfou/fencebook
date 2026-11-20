@@ -3,13 +3,14 @@ import { ImageResponse } from "next/og";
 import { items } from "@/lib/catalog";
 import { getDict, isLocale, locales } from "@/lib/i18n";
 import { C, OG_SIZE, OgLogo, OgStripes, iconData, ogFonts, siteHost, tileStyle } from "@/lib/og";
-import { BRAND, GAME } from "@/lib/site";
 import type { Item } from "@/lib/types";
 
-export const alt = `${BRAND} — ${GAME}`;
-export const size = OG_SIZE;
-export const contentType = "image/png";
-// Render at build time for every language; the Worker only serves the files.
+// Link preview image for the catalog: /<locale>/og.png.
+// A route named og.png (not the opengraph-image convention) so the exported file keeps the .png extension
+// and the static host serves it as image/png.
+const size = OG_SIZE;
+// Render at build time for every language (static export).
+export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -37,7 +38,7 @@ function collage(): Item[] {
   return [picked[0], picked[2], picked[4], picked[3], picked[5], picked[1]].filter(Boolean);
 }
 
-export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
+export async function GET(_request: Request, { params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = getDict(isLocale(locale) ? locale : "ru");
   const tiles = await Promise.all(collage().map(async (i) => ({ item: i, src: await iconData(i.id) })));

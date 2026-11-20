@@ -1,4 +1,4 @@
-# https://developers.cloudflare.com/workers/static-assets/headers
-# https://opennext.js.org/cloudflare/caching#static-assets-caching
+# Custom headers for Cloudflare static assets: https://developers.cloudflare.com/workers/static-assets/headers
+# Hashed build files never change, so browsers can cache them for a year.
 /_next/static/*
   Cache-Control: public,max-age=31536000,immutable

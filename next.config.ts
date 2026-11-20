@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // The catalog is static: every page is rendered at build time (generateStaticParams).
-  // cacheComponents and partialPrefetching are off: they need the Node.js runtime, and Workers is not Node.js.
-  // Icons are served as they are (the PNG files are already small), so image optimization is not needed.
+  // Static export: every page, preview image, sitemap and robots.txt is written to ./out at build time.
+  // Cloudflare serves these files as static assets, so no Worker code runs and there are no CPU limits.
+  output: "export",
+  // Icons are served as they are (the PNG files are already small); static export needs this anyway.
   images: { unoptimized: true },
   turbopack: {
     rules: {
@@ -16,5 +17,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());

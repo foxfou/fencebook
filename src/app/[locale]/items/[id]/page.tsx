@@ -5,7 +5,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { itemDescription, itemName, items, itemsById } from "@/lib/catalog";
 import { money } from "@/lib/format";
 import { getDict, isLocale, locales } from "@/lib/i18n";
-import { alternates, clip, openGraph } from "@/lib/seo";
+import { alternates, clip, shareTags } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -32,7 +32,13 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {
     title,
     description: clip(desc ? `${lead} ${desc}` : lead, 160),
-    openGraph: openGraph({ locale, title, description: clip(lead, 200), path: `/${locale}/items/${id}` }),
+    ...shareTags({
+      locale,
+      title,
+      description: clip(lead, 200),
+      path: `/${locale}/items/${id}`,
+      image: `/${locale}/items/${id}/og.png`,
+    }),
     alternates: alternates(locale, `/items/${id}`),
   };
 }

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ItemBrowser } from "@/components/ItemBrowser";
 import { items, toListItems } from "@/lib/catalog";
 import { getDict, isLocale } from "@/lib/i18n";
-import { alternates, openGraph } from "@/lib/seo";
+import { alternates, shareTags } from "@/lib/seo";
 import { BRAND } from "@/lib/site";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -14,7 +14,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     // The title template from the layout does not apply to page.tsx in the same segment, so the full title is set here.
     title: { absolute: `${t.seo.catalogTitle} | ${BRAND}` },
     description: t.seo.catalogDescription(items.length),
-    openGraph: openGraph({ locale, title: t.seo.catalogTitle, description: t.seo.catalogShare, path: `/${locale}` }),
+    ...shareTags({
+      locale,
+      title: t.seo.catalogTitle,
+      description: t.seo.catalogShare,
+      path: `/${locale}`,
+      image: `/${locale}/og.png`,
+    }),
     alternates: alternates(locale, ""),
   };
 }
