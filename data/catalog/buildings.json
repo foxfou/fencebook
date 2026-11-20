@@ -1,0 +1,938 @@
+[
+ {
+  "descriptions": {
+   "de": "Eine fremde Basis. Mit dem nötigen Geschick kann man sie ausrauben.",
+   "en": "Someone else's base. With the right skills, it can be robbed.",
+   "es": "Base de otra persona. Con las habilidades adecuadas, se puede saquear.",
+   "fr": "La base de quelqu'un d'autre. Avec les compétences adéquates, elle peut être pillée.",
+   "pt": "Base de outra pessoa. Com as habilidades certas, ela pode ser saqueada.",
+   "ru": "Чужая база. При должной сноровке ее можно ограбить."
+  },
+  "id": "CharacterPlot",
+  "marker_type": 73,
+  "names": {
+   "de": "Grundstücksplan",
+   "en": "Plot Plan",
+   "es": "Plano del terreno",
+   "fr": "Plan de la parcelle",
+   "pt": "Planta do Terreno",
+   "ru": "План участка"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Ein Anziehungspunkt für Verbrecher aus dem gesamten Bundesstaat.",
+   "en": "A central attraction for criminals from all over the state.",
+   "es": "Un punto de encuentro para delincuentes de todo el estado.",
+   "fr": "Un lieu de prédilection pour les criminels de tout l'État.",
+   "pt": "O principal ponto de atração para criminosos de todo o estado.",
+   "ru": "Центр притяжения криминальных лиц всего штата."
+  },
+  "id": "DrugsLab",
+  "marker_type": 74,
+  "names": {
+   "de": "Lennys Motel",
+   "en": "Lenny's Motel",
+   "es": "Motel de Lenny",
+   "fr": "Motel de Lenny",
+   "pt": "Motel do Lenny",
+   "ru": "Мотель Ленни"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Das kriminelle Herz des Staates. Barkeeper Lenny bietet jede Menge nützliche Dienste an, und am Roulettetisch lassen sich leicht neue Verbündete finden.",
+   "en": "The criminal heart of the state. Bartender Lenny offers plenty of useful services, and the roulette table is a great place to find new allies.",
+   "es": "El corazón criminal del estado. El barman Lenny ofrece un montón de servicios útiles, y la mesa de la ruleta es un lugar estupendo para encontrar nuevos aliados.",
+   "fr": "Le cœur criminel de l'État. Le barman Lenny propose de nombreux services utiles, et la table de roulette est l'endroit idéal pour se faire de nouveaux alliés.",
+   "pt": "O coração criminoso do estado. O barman Lenny oferece vários serviços úteis, e a mesa de roleta é um ótimo lugar para encontrar novos aliados.",
+   "ru": "Криминальное сердце штата. Бармен Ленни предложит массу полезных услуг, а за рулеткой легко завести новых союзников."
+  },
+  "id": "HubBar",
+  "marker_type": 117,
+  "names": {
+   "de": "Versteck",
+   "en": "Lair",
+   "es": "Guarida",
+   "fr": "Repaire",
+   "pt": "Covil",
+   "ru": "Пристанище"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Beschreibung des Bunkers",
+   "en": "Bunker description",
+   "es": "Descripción del búnker",
+   "fr": "Description du bunker",
+   "pt": "Descrição do bunker",
+   "ru": "Описание бункера"
+  },
+  "id": "HubBunker",
+  "marker_type": 104,
+  "names": {
+   "de": "Bunker",
+   "en": "Bunker",
+   "es": "Búnker",
+   "fr": "Bunker",
+   "pt": "Bunker",
+   "ru": "Бункер"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Ein Grundstück, das sich zum Bau oder zur Verlegung einer Basis eignet.",
+   "en": "A land plot suitable for building or relocating a base.",
+   "es": "Una parcela de terreno adecuada para construir o trasladar una base.",
+   "fr": "Terrain adapté à la construction ou au déplacement d'une base.",
+   "pt": "Um terreno adequado para construir ou realocar uma base.",
+   "ru": "Участок земли, подходящий для основания или переноса базы."
+  },
+  "id": "MovePlot",
+  "marker_type": 73,
+  "names": {
+   "de": "Grundstück",
+   "en": "Land Plot",
+   "es": "Parcela de terreno",
+   "fr": "Parcelle de terrain",
+   "pt": "Terreno",
+   "ru": "Земельный участок"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "In deiner Basis kannst du Geld waschen, Fracht öffnen, dich eindecken und einfach mal durchatmen.",
+   "en": "At your base, you can launder money, open cargo, stock up, and just catch your breath.",
+   "es": "En tu base puedes blanquear dinero, abrir cargas, abastecerte y simplemente tomarte un respiro.",
+   "fr": "Dans votre base, vous pouvez blanchir de l'argent, ouvrir des cargaisons, faire le plein et simplement reprendre votre souffle.",
+   "pt": "Na sua base, você pode lavar dinheiro, abrir cargas, reabastecer-se e simplesmente respirar um pouco.",
+   "ru": "На своей базе можно отмыть деньги, вскрыть грузы, закупиться и просто перевести дух."
+  },
+  "id": "PlayerPlot",
+  "marker_type": 69,
+  "names": {
+   "de": "Meine Basis",
+   "en": "My Base",
+   "es": "Mi base",
+   "fr": "Ma base",
+   "pt": "Minha Base",
+   "ru": "Моя база"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Ein Anziehungspunkt für Verbrecher und Draufgänger, die vor nichts zurückschrecken. Hier festigen die Clans ihre Kontrolle über den Bezirk.",
+   "en": "A magnet for criminals and daredevils who stop at nothing. This is where clans establish their control over the district.",
+   "es": "Un imán para criminales y temerarios que no se detienen ante nada. Aquí es donde los clanes establecen su control sobre el distrito.",
+   "fr": "Un aimant pour les criminels et les têtes brûlées prêts à tout. C'est ici que les clans établissent leur emprise sur le district.",
+   "pt": "Um ímã para criminosos e aventureiros que não medem esforços. É aqui que os clãs estabelecem seu controle sobre o bairro.",
+   "ru": "Точка притяжения для преступников, готовых идти по головам. Здесь кланы закрепляют свое влияние над районом."
+  },
+  "id": "SettlementHangar",
+  "marker_type": 103,
+  "names": {
+   "de": "Hangar",
+   "en": "Hangar",
+   "es": "Hangar",
+   "fr": "Hangar",
+   "pt": "Hangar",
+   "ru": "Ангар"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Die Zentralbank von Looty Bay. Hinter den Türen der größten Bank der Stadt befindet sich ein gewaltiger Tresor. Darin gibt es bestimmt etwas, das sich zu stehlen lohnt.",
+   "en": "The Central Bank of Looty Bay. Behind the doors of the city’s largest bank lies a massive vault. There’s definitely something worth stealing in there.",
+   "es": "El Banco Central de Looty Bay. Tras las puertas del banco más grande de la ciudad se oculta una enorme cámara acorazada. Sin duda, allí hay algo que vale la pena robar.",
+   "fr": "La Banque centrale de Looty Bay. Derrière les portes de la plus grande banque de la ville se trouve une immense chambre forte. Il y a certainement quelque chose qui vaille le coup d'être volé là-dedans.",
+   "pt": "O Banco Central de Looty Bay. Atrás das portas do maior banco da cidade, há um enorme cofre. Com certeza tem algo que vale a pena roubar lá dentro.",
+   "ru": "Главный банк Лути-Бей. За дверями крупнейшего банка города скрыто массивное хранилище. Там определенно есть чем поживиться."
+  },
+  "id": "city_bank",
+  "marker_type": 50,
+  "names": {
+   "de": "Bank von Looty Bay",
+   "en": "Looty Bay Bank",
+   "es": "Banco de Looty Bay",
+   "fr": "Banque de Looty Bay",
+   "pt": "Banco de Looty Bay",
+   "ru": "Банк Лути-Бей"
+  },
+  "rewards": [
+   "cash_1",
+   "gemstone_3",
+   "gold_bar_1"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein gemütlicher Burgerladen im Geschäftsviertel von Looty Bay.",
+   "en": "A cozy burger place in the business district of Looty Bay.",
+   "es": "Una hamburguesería acogedora en el distrito financiero de Looty Bay.",
+   "fr": "Un petit café de burgers chaleureux dans le quartier des affaires de Looty Bay.",
+   "pt": "Uma hamburgueria aconchegante no bairro comercial de Looty Bay.",
+   "ru": "Уютная бургерная в бизнес-районе Лути-Бей."
+  },
+  "id": "city_cafe_east",
+  "marker_type": 36,
+  "names": {
+   "de": "Café Rusty Burgers",
+   "en": "Rusty Burgers Café",
+   "es": "Café Rusty Burgers",
+   "fr": "Café Rusty Burgers",
+   "pt": "Cafeteria Rusty Burgers",
+   "ru": "Кафе Rusty Burgers"
+  },
+  "rewards": [
+   "alcohol_1",
+   "alcohol_2",
+   "alcohol_3",
+   "alcohol_5"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein kleines, gemütliches Café am Pier.",
+   "en": "A small, cozy café on the pier.",
+   "es": "Una pequeña y acogedora cafetería en el muelle.",
+   "fr": "Un petit café chaleureux sur la jetée.",
+   "pt": "Um pequeno e aconchegante café no píer.",
+   "ru": "Небольшое уютное кафе на пирсе."
+  },
+  "id": "city_cafe_pier",
+  "marker_type": 36,
+  "names": {
+   "de": "Café Meeresbrise",
+   "en": "Ocean Breeze Café",
+   "es": "Café Ocean Breeze",
+   "fr": "Café Ocean Breeze",
+   "pt": "Cafeteria Ocean Breeze",
+   "ru": "Кафе Ocean Breeze"
+  },
+  "rewards": [
+   "alcohol_1",
+   "alcohol_2",
+   "alcohol_3",
+   "alcohol_5"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein Ferienhaus in einem exklusiven Viertel. Gerüchten zufolge liebte sein Besitzer allerlei exotische Pflanzen.",
+   "en": "A cottage in an elite neighborhood. Rumor has it that its owner was very fond of all kinds of exotic plants.",
+   "es": "Una casa de campo en un barrio exclusivo. Se rumorea que a su propietario le encantaban todo tipo de plantas exóticas.",
+   "fr": "Un cottage dans un quartier huppé. La rumeur veut que son propriétaire ait été très friand de toutes sortes de plantes exotiques.",
+   "pt": "Um chalé em um bairro nobre. Dizem que seu proprietário adorava plantas exóticas.",
+   "ru": "Коттедж в элитном районе. По слухам, его владелец очень любил всякие интересные растения."
+  },
+  "id": "city_drug_house",
+  "marker_type": 105,
+  "names": {
+   "de": "Ferienhaus",
+   "en": "Cottage",
+   "es": "Casa de campo",
+   "fr": "Cottage",
+   "pt": "Chalé",
+   "ru": "Коттедж"
+  },
+  "rewards": [
+   "comics_2",
+   "drugs_1",
+   "journal_4",
+   "perfume_2"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Die östliche Filiale des Geschäfts Emporium. Hier werden Smartphones, Laptops sowie weitere Elektronikgeräte und Haushaltsgeräte verkauft.",
+   "en": "The eastern branch of the Emporium store. It sells smartphones, laptops, as well as other electronics and household appliances.",
+   "es": "La sucursal oriental de la tienda Emporium. Vende teléfonos inteligentes, portátiles, así como otros aparatos electrónicos y electrodomésticos.",
+   "fr": "La succursale est du magasin Emporium. Elle vend des smartphones, des ordinateurs portables, ainsi que d'autres appareils électroniques et électroménagers.",
+   "pt": "A filial leste da loja Emporium, que vende smartphones, laptops, além de outros aparelhos eletrônicos e eletrodomésticos.",
+   "ru": "Восточный филиал магазина Emporium. Здесь продаются смартфоны, ноутбуки и другая электроника и бытовая техника."
+  },
+  "id": "city_electronics_store_east",
+  "marker_type": 51,
+  "names": {
+   "de": "Elektronikgeschäft",
+   "en": "Electronics Store",
+   "es": "Tienda de electrónica",
+   "fr": "Magasin d'électronique",
+   "pt": "Loja de Eletrônicos",
+   "ru": "Магазин электроники"
+  },
+  "rewards": [
+   "console_4",
+   "headphones_1",
+   "laptop_4",
+   "phone_4"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Die westliche Filiale des Geschäfts Emporium. Hier werden Smartphones, Laptops sowie weitere Elektronikgeräte und Haushaltsgeräte verkauft.",
+   "en": "The western branch of the Emporium store. It sells smartphones, laptops, as well as other electronics and household appliances.",
+   "es": "La sucursal occidental de la tienda Emporium. Vende teléfonos inteligentes, portátiles, así como otros aparatos electrónicos y electrodomésticos.",
+   "fr": "La succursale ouest du magasin Emporium. Elle vend des smartphones, des ordinateurs portables, ainsi que d'autres appareils électroniques et électroménagers.",
+   "pt": "A filial oeste da loja Emporium, que vende smartphones, laptops, além de outros aparelhos eletrônicos e eletrodomésticos.",
+   "ru": "Западный филиал магазина Emporium. Здесь продаются смартфоны, ноутбуки и другая электроника и бытовая техника."
+  },
+  "id": "city_electronics_store_west",
+  "marker_type": 51,
+  "names": {
+   "de": "Elektronikgeschäft",
+   "en": "Electronics Store",
+   "es": "Tienda de electrónica",
+   "fr": "Magasin d'électronique",
+   "pt": "Loja de Eletrônicos",
+   "ru": "Магазин электроники"
+  },
+  "rewards": [
+   "console_4",
+   "headphones_1",
+   "laptop_4",
+   "phone_4"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Hier kannst du Munition und Schutzausrüstung kaufen.",
+   "en": "Here you can purchase munitions and protective gear.",
+   "es": "Aquí puedes comprar munición y equipamiento de protección.",
+   "fr": "Vous pouvez acheter ici des munitions et des équipements de protection.",
+   "pt": "Você pode comprar munições e equipamentos de proteção aqui.",
+   "ru": "Здесь можно приобрести амуницию и защиту."
+  },
+  "id": "city_equipment_store_east",
+  "marker_type": 42,
+  "names": {
+   "de": "Ausrüstungsgeschäft: Ost",
+   "en": "Equipment Store: East",
+   "es": "Tienda de equipamiento: Este",
+   "fr": "Magasin d'équipement\\u00A0: est",
+   "pt": "Loja de Equipamentos: Leste",
+   "ru": "Магазин экипировки: Восток"
+  },
+  "rewards": [
+   "burner_2",
+   "equipment_11",
+   "equipment_2",
+   "vest3_m3"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Hier kannst du Munition und Schutzausrüstung kaufen.",
+   "en": "Here you can purchase munitions and protective gear.",
+   "es": "Aquí puedes comprar munición y equipamiento de protección.",
+   "fr": "Vous pouvez acheter ici des munitions et des équipements de protection.",
+   "pt": "Você pode comprar munições e equipamentos de proteção aqui.",
+   "ru": "Здесь можно приобрести амуницию и защиту."
+  },
+  "id": "city_equipment_store_west",
+  "marker_type": 42,
+  "names": {
+   "de": "Ausrüstungsgeschäft: West",
+   "en": "Equipment Store: West",
+   "es": "Tienda de equipamiento: Oeste",
+   "fr": "Magasin d'équipement\\u00A0: ouest",
+   "pt": "Loja de Equipamentos: Oeste",
+   "ru": "Магазин экипировки: Запад"
+  },
+  "rewards": [
+   "burner_2",
+   "equipment_11",
+   "equipment_2",
+   "vest3_m3"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Die zentrale Kunstgalerie in Looty Bay, in der unbezahlbare Kunstwerke ausgestellt werden.",
+   "en": "The central art gallery in Looty Bay, displaying priceless works of art.",
+   "es": "La galería de arte central de Looty Bay, donde se exhiben obras de arte invaluables.",
+   "fr": "La galerie d'art centrale de Looty Bay, qui expose des œuvres d'art inestimables.",
+   "pt": "A galeria de arte central de Looty Bay, que exibe obras de arte inestimáveis.",
+   "ru": "Главная арт-галерея Лути-Бей с бесценными произведениями искусства."
+  },
+  "id": "city_gallery",
+  "marker_type": 49,
+  "names": {
+   "de": "Kunstgalerie",
+   "en": "Art Gallery",
+   "es": "Galería de arte",
+   "fr": "Galerie d'art",
+   "pt": "Galeria de Arte",
+   "ru": "Арт-галерея"
+  },
+  "rewards": [
+   "antique_1",
+   "antique_2",
+   "antique_4",
+   "picture_tube_3"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Diese Tankstelle mit Werkstatt ist der Lieblingsort des Offiziers.",
+   "en": "This gas station with a repair shop is the officer's favorite hangout spot.",
+   "es": "Esta gasolinera con taller mecánico es el lugar favorito del oficial para pasar el rato.",
+   "fr": "Cette station-service avec un atelier de réparation est le lieu de prédilection de l'officier.",
+   "pt": "Este posto de gasolina com oficina mecânica é o lugar favorito do oficial.",
+   "ru": "Автозаправка с автомастерской - любимое место офицера."
+  },
+  "id": "city_gas_station",
+  "marker_type": 46,
+  "names": {
+   "de": "Tankstelle",
+   "en": "Gas Station",
+   "es": "Gasolinera",
+   "fr": "Station-service",
+   "pt": "Posto de Gasolina",
+   "ru": "Автозаправка"
+  },
+  "rewards": [
+   "alcohol_1",
+   "car_device_2",
+   "car_parts_5",
+   "car_parts_8"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Das allgemeine Krankenhaus von Looty Bay.",
+   "en": "Looty Bay's general hospital.",
+   "es": "Hospital general de Looty Bay.",
+   "fr": "Hôpital général de Looty Bay.",
+   "pt": "Hospital municipal de Looty Bay.",
+   "ru": "Городская клиническая больница Лути-Бей."
+  },
+  "id": "city_hospital",
+  "marker_type": 39,
+  "names": {
+   "de": "Krankenhaus",
+   "en": "Hospital",
+   "es": "Hospital",
+   "fr": "Hôpital",
+   "pt": "Hospital",
+   "ru": "Больница"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Das prestigeträchtigste Hotel in Looty Bay. Hier residieren die einflussreichsten Persönlichkeiten.",
+   "en": "The most prestigious hotel in Looty Bay. Accommodates the most influential people.",
+   "es": "El hotel más prestigioso de Looty Bay. Aquí se alojan las personas más influyentes.",
+   "fr": "L'hôtel le plus prestigieux de Looty Bay. Il accueille les personnalités les plus influentes.",
+   "pt": "O hotel mais prestigiado de Looty Bay. Aqui se hospedam as pessoas mais influentes.",
+   "ru": "Самый престижный отель в Лути-Бей. Здесь размещаются самые влиятельные личности."
+  },
+  "id": "city_hotel_grand",
+  "marker_type": 40,
+  "names": {
+   "de": "Grand Hotel",
+   "en": "Grand Hotel",
+   "es": "Grand Hotel",
+   "fr": "Grand hôtel",
+   "pt": "Grand Hotel",
+   "ru": "Гранд-отель"
+  },
+  "rewards": [
+   "earrings_2",
+   "necklace_6",
+   "ring_6",
+   "watch_5"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Das blaue Reef Hotel mit Blick auf den Ozean.",
+   "en": "The blue Reef Hotel overlooking the ocean.",
+   "es": "El hotel Reef azul con vistas al océano.",
+   "fr": "L'hôtel Reef bleu avec vue sur l'océan.",
+   "pt": "O Hotel Reef azul com vista para o oceano.",
+   "ru": "Голубой отель Reef с видом на океан."
+  },
+  "id": "city_hotel_reef",
+  "marker_type": 58,
+  "names": {
+   "de": "Reef Hotel",
+   "en": "Reef Hotel",
+   "es": "Hotel Reef",
+   "fr": "Hôtel Reef",
+   "pt": "Hotel Reef",
+   "ru": "Отель Reef"
+  },
+  "rewards": [
+   "lighter_3",
+   "poker_cards_3",
+   "toy_2",
+   "vinyl_1"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Das gelbe Seasons Hotel mit Blick auf den Pier.",
+   "en": "The yellow Seasons Hotel overlooking the pier.",
+   "es": "El hotel Seasons amarillo con vistas al muelle.",
+   "fr": "L'hôtel Seasons jaune avec vue sur la jetée.",
+   "pt": "O Hotel Seasons amarelo com vista para o píer.",
+   "ru": "Желтый отель Seasons с видом на причал."
+  },
+  "id": "city_hotel_seasons",
+  "marker_type": 58,
+  "names": {
+   "de": "Seasons Hotel",
+   "en": "Seasons Hotel",
+   "es": "Hotel Seasons",
+   "fr": "Hôtel Seasons",
+   "pt": "Hotel Seasons",
+   "ru": "Отель Seasons"
+  },
+  "rewards": [
+   "lighter_3",
+   "poker_cards_3",
+   "toy_2",
+   "vinyl_1"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein Ferienhaus in einem exklusiven Viertel von Looty Bay.",
+   "en": "A cottage in an elite neighborhood of Looty Bay.",
+   "es": "Una casa de campo en un barrio exclusivo de Looty Bay.",
+   "fr": "Un cottage dans un quartier huppé de Looty Bay.",
+   "pt": "Um chalé em um bairro nobre de Looty Bay.",
+   "ru": "Коттедж в элитном районе Лути-Бей."
+  },
+  "id": "city_house_6",
+  "marker_type": 105,
+  "names": {
+   "de": "Ferienhaus",
+   "en": "Cottage",
+   "es": "Casa de campo",
+   "fr": "Cottage",
+   "pt": "Chalé",
+   "ru": "Коттедж"
+  },
+  "rewards": [
+   "baseball_card_5",
+   "comics_3",
+   "journal_5",
+   "perfume_2"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein Ferienhaus in einem exklusiven Viertel von Looty Bay.",
+   "en": "A cottage in an elite neighborhood of Looty Bay.",
+   "es": "Una casa de campo en un barrio exclusivo de Looty Bay.",
+   "fr": "Un cottage dans un quartier huppé de Looty Bay.",
+   "pt": "Um chalé em um bairro nobre de Looty Bay.",
+   "ru": "Коттедж в элитном районе Лути-Бей."
+  },
+  "id": "city_house_8",
+  "marker_type": 105,
+  "names": {
+   "de": "Ferienhaus",
+   "en": "Cottage",
+   "es": "Casa de campo",
+   "fr": "Cottage",
+   "pt": "Chalé",
+   "ru": "Коттедж"
+  },
+  "rewards": [
+   "baseball_card_5",
+   "comics_3",
+   "journal_5",
+   "perfume_2"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Die östliche Filiale des Juweliergeschäfts Brittany mit einzigartigem Schmuck.",
+   "en": "The eastern branch of the Brittany jewelry store selling unique jewelry.",
+   "es": "La sucursal oriental de la joyería Brittany, que vende joyas únicas.",
+   "fr": "La succursale est de la bijouterie Brittany proposant des bijoux uniques.",
+   "pt": "A filial leste da joalheria Brittany, que vende joias exclusivas.",
+   "ru": "Восточный филиал ювелирного магазина Brittany с уникальными украшениями."
+  },
+  "id": "city_jewelry_store_east",
+  "marker_type": 44,
+  "names": {
+   "de": "Juweliergeschäft: Ost",
+   "en": "Jewelry Store: East",
+   "es": "Joyería: Este",
+   "fr": "Bijouterie\\u00A0: est",
+   "pt": "Joalheria: Leste",
+   "ru": "Ювелирный магазин: Восток"
+  },
+  "rewards": [
+   "earrings_2",
+   "necklace_2",
+   "ring_5",
+   "watch_4"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Die westliche Filiale des Juweliergeschäfts Brittany mit einzigartigem Schmuck.",
+   "en": "The western branch of the Brittany jewelry store selling unique jewelry.",
+   "es": "La sucursal occidental de la joyería Brittany, que vende joyas únicas.",
+   "fr": "La succursale ouest de la bijouterie Brittany proposant des bijoux uniques.",
+   "pt": "A filial oeste da joalheria Brittany, que vende joias exclusivas.",
+   "ru": "Западный филиал ювелирного магазина Brittany с уникальными украшениями."
+  },
+  "id": "city_jewelry_store_west",
+  "marker_type": 44,
+  "names": {
+   "de": "Juweliergeschäft: West",
+   "en": "Jewelry Store: West",
+   "es": "Joyería: Oeste",
+   "fr": "Bijouterie\\u00A0: ouest",
+   "pt": "Joalheria: Oeste",
+   "ru": "Ювелирный магазин: Запад"
+  },
+  "rewards": [
+   "earrings_2",
+   "necklace_2",
+   "ring_5",
+   "watch_4"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein Haus, das den höchsten Standard an Luxus und Ansehen verkörpert.",
+   "en": "A house that embodies the highest standard of luxury and respectability.",
+   "es": "Una casa que encarna el más alto estándar de lujo y respetabilidad.",
+   "fr": "Une maison qui incarne le summum du luxe et de la respectabilité.",
+   "pt": "Uma casa que incorpora o mais alto padrão de luxo e respeitabilidade.",
+   "ru": "Дом, воплощающий высший стандарт роскоши и респектабельности."
+  },
+  "id": "city_luxury_cottage",
+  "marker_type": 105,
+  "names": {
+   "de": "Luxus-Ferienhaus",
+   "en": "Elite Cottage",
+   "es": "Casa de campo de lujo",
+   "fr": "Cottage d'élite",
+   "pt": "Chalé de Elite",
+   "ru": "Элитный коттедж"
+  },
+  "rewards": [
+   "baseball_card_5",
+   "comics_3",
+   "journal_5",
+   "perfume_2"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein luxuriöses und teures Herrenhaus in einem exklusiven Viertel.",
+   "en": "A luxurious and expensive mansion in an elite neighborhood.",
+   "es": "Una mansión lujosa y costosa en un barrio exclusivo.",
+   "fr": "Un manoir luxueux et coûteux dans un quartier huppé.",
+   "pt": "Uma mansão luxuosa e cara em um bairro nobre.",
+   "ru": "Шикарный и дорогой особняк в элитном районе."
+  },
+  "id": "city_mansion",
+  "marker_type": 105,
+  "names": {
+   "de": "Herrenhaus des Adligen",
+   "en": "Noble's Mansion",
+   "es": "Mansión del noble",
+   "fr": "Manoir du noble",
+   "pt": "Mansão da Nobreza",
+   "ru": "Особняк аристократа"
+  },
+  "rewards": [
+   "baseball_card_5",
+   "comics_3",
+   "journal_5",
+   "perfume_2"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Minimarkt im Geschäftsviertel von Looty Bay.",
+   "en": "A convenience store in the business district of Looty Bay.",
+   "es": "Una tienda de conveniencia en el distrito financiero de Looty Bay.",
+   "fr": "Une supérette dans le quartier des affaires de Looty Bay.",
+   "pt": "Uma loja de conveniência no bairro comercial de Looty Bay.",
+   "ru": "Минимаркет в бизнес-районе Лути-Бей."
+  },
+  "id": "city_mini_market_east",
+  "marker_type": 43,
+  "names": {
+   "de": "Minimarkt",
+   "en": "Convenience Store",
+   "es": "Tienda de conveniencia",
+   "fr": "Supérette",
+   "pt": "Loja de Conveniência",
+   "ru": "Минимаркет"
+  },
+  "rewards": [
+   "alcohol_1",
+   "alcohol_2",
+   "alcohol_3",
+   "alcohol_5"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Minimarkt im Geschäftsviertel von Looty Bay, neben der Brücke.",
+   "en": "A convenience store in the business district of Looty Bay, next to the bridge.",
+   "es": "Una tienda de conveniencia en el distrito financiero de Looty Bay, junto al puente.",
+   "fr": "Une supérette dans le quartier des affaires de Looty Bay, à côté du pont.",
+   "pt": "Uma loja de conveniência no bairro comercial de Looty Bay, ao lado da ponte.",
+   "ru": "Минимаркет в бизнес-районе Лути-Бей, рядом с мостом."
+  },
+  "id": "city_mini_market_east_bridge",
+  "marker_type": 43,
+  "names": {
+   "de": "Minimarkt",
+   "en": "Convenience Store",
+   "es": "Tienda de conveniencia",
+   "fr": "Supérette",
+   "pt": "Loja de Conveniência",
+   "ru": "Минимаркет"
+  },
+  "rewards": [
+   "alcohol_1",
+   "alcohol_2",
+   "alcohol_3",
+   "alcohol_5"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Minimarkt in der Nähe der zerstörten Brücke.",
+   "en": "A convenience store in the resort area of Looty Bay.",
+   "es": "Una tienda de conveniencia en la zona turística de Looty Bay.",
+   "fr": "Une supérette près du pont détruit.",
+   "pt": "Uma loja de conveniência perto da ponte destruída.",
+   "ru": "Минимаркет в курортном районе Лути-Бей."
+  },
+  "id": "city_mini_market_west",
+  "marker_type": 43,
+  "names": {
+   "de": "Minimarkt",
+   "en": "Convenience Store",
+   "es": "Tienda de conveniencia",
+   "fr": "Supérette",
+   "pt": "Loja de Conveniência",
+   "ru": "Минимаркет"
+  },
+  "rewards": [
+   "alcohol_1",
+   "alcohol_2",
+   "alcohol_3",
+   "alcohol_5"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein großer öffentlicher Parkplatz. Kann ein gutes Versteck sein, wenn man verfolgt wird.",
+   "en": "A large public parking lot. Can be a good hiding place when you're being followed.",
+   "es": "Un gran aparcamiento público. Puede ser un buen escondite cuando te siguen.",
+   "fr": "Un grand parking public. Peut être une bonne cachette quand on vous suit.",
+   "pt": "Um grande estacionamento público. Pode ser um bom esconderijo para escapar de uma perseguição.",
+   "ru": "Большая городская парковка. Может стать хорошим укрытием, когда за тобой хвост."
+  },
+  "id": "city_parking",
+  "marker_type": 71,
+  "names": {
+   "de": "Parkplatz",
+   "en": "Parking",
+   "es": "Aparcamiento",
+   "fr": "Parking",
+   "pt": "Estacionamento",
+   "ru": "Паркинг"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Ein großer öffentlicher Parkplatz. Kann ein gutes Versteck sein, wenn man verfolgt wird.",
+   "en": "A large public parking lot. Can be a good hiding place when you're being followed.",
+   "es": "Un gran aparcamiento público. Puede ser un buen escondite cuando te siguen.",
+   "fr": "Un grand parking public. Peut être une bonne cachette quand on vous suit.",
+   "pt": "Um grande estacionamento público. Pode ser um bom esconderijo para escapar de uma perseguição.",
+   "ru": "Большая городская парковка. Может стать хорошим укрытием, когда за тобой хвост."
+  },
+  "id": "city_parking_east",
+  "marker_type": 71,
+  "names": {
+   "de": "Parkplatz",
+   "en": "Parking",
+   "es": "Aparcamiento",
+   "fr": "Parking",
+   "pt": "Estacionamento",
+   "ru": "Паркинг"
+  },
+  "rewards": []
+ },
+ {
+  "descriptions": {
+   "de": "Eine Filiale der großen Apothekenkette Looty Bay im Geschäftsviertel.",
+   "en": "A branch of the major Looty Bay pharmacy chain in the business district.",
+   "es": "Una sucursal de la principal cadena de farmacias de Looty Bay en el distrito financiero.",
+   "fr": "Une succursale de la principale chaîne de pharmacies de Looty Bay dans le quartier des affaires.",
+   "pt": "Uma filial da principal rede de farmácias de Looty Bay no bairro comercial.",
+   "ru": "Филиал главной аптечной сети Лути-Бей в бизнес-районе."
+  },
+  "id": "city_pharmacy_shop_east",
+  "marker_type": 47,
+  "names": {
+   "de": "Apotheke",
+   "en": "Pharmacy",
+   "es": "Farmacia",
+   "fr": "Pharmacie",
+   "pt": "Farmácia",
+   "ru": "Аптека"
+  },
+  "rewards": [
+   "condoms_3",
+   "painkiller_1",
+   "pharma_tools_4",
+   "vial_6"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Eine Filiale der großen Apothekenkette Looty Bay im Feriengebiet.",
+   "en": "A branch of the major Looty Bay pharmacy chain in the resort area.",
+   "es": "Una sucursal de la principal cadena de farmacias de Looty Bay en la zona turística.",
+   "fr": "Une succursale de la principale chaîne de pharmacies de Looty Bay dans la zone touristique.",
+   "pt": "Uma filial da principal rede de farmácias de Looty Bay na área turística.",
+   "ru": "Филиал главной аптечной сети Лути-Бей в курортном районе."
+  },
+  "id": "city_pharmacy_shop_west",
+  "marker_type": 47,
+  "names": {
+   "de": "Apotheke",
+   "en": "Pharmacy",
+   "es": "Farmacia",
+   "fr": "Pharmacie",
+   "pt": "Farmácia",
+   "ru": "Аптека"
+  },
+  "rewards": [
+   "condoms_3",
+   "painkiller_1",
+   "pharma_tools_4",
+   "vial_5"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Zentralpolizeirevier von Looty Bay. Eine Bastion von Recht und Ordnung, in der du dich der Truppe anschließen oder ein mächtiges Arsenal aus dem Lager für beschlagnahmte Güter holen kannst.",
+   "en": "Central Police Department of Looty Bay. A bastion of law and order where you can join the force or pick up a powerful arsenal from the confiscated goods warehouse.",
+   "es": "Departamento Central de Policía de Looty Bay. Un bastión de la ley y el orden donde puedes unirte al cuerpo o conseguir un potente arsenal en el almacén de bienes confiscados.",
+   "fr": "Commissariat central de Looty Bay. Un bastion de la loi et de l'ordre où vous pouvez rejoindre les forces de l'ordre ou récupérer un arsenal puissant dans l'entrepôt des biens confisqués.",
+   "pt": "Departamento Central de Polícia de Looty Bay. Um bastião da lei e da ordem onde você pode ingressar no serviço ou obter um poderoso arsenal no depósito de bens confiscados.",
+   "ru": "Центральный отдел полиции Лути-Бей. Оплот закона, где можно поступить на службу или забрать мощный арсенал из хранилища конфиската."
+  },
+  "id": "city_police_station",
+  "marker_type": 38,
+  "names": {
+   "de": "Polizeirevier",
+   "en": "Police Station",
+   "es": "Comisaría de policía",
+   "fr": "Commissariat",
+   "pt": "Delegacia",
+   "ru": "Полицейский участок"
+  },
+  "rewards": [
+   "cash_1",
+   "drugs_1",
+   "rc556_m3"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Ein Club, in dem du sowohl deine Seele als auch deine Sinne entspannen kannst.",
+   "en": "A club where you can relax both your soul and your senses.",
+   "es": "Un club donde puedes relajar tanto el alma como los sentidos.",
+   "fr": "Un club où vous pouvez vous détendre corps et âme, tout en ravissant vos sens.",
+   "pt": "Um strip club onde você pode relaxar a alma e os sentidos.",
+   "ru": "Клуб, где можно отдохнуть как душой, так и глазами."
+  },
+  "id": "city_strip_club",
+  "marker_type": 45,
+  "names": {
+   "de": "Stripclub",
+   "en": "Strip Club",
+   "es": "Club de striptease",
+   "fr": "Club de strip-tease",
+   "pt": "Boate",
+   "ru": "Стрип-клуб"
+  },
+  "rewards": [
+   "alcohol_5",
+   "cash_1",
+   "condoms_4",
+   "poker_cards_2"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Die östliche Filiale des Waffenladens Coastal Eagle mit einer großen Auswahl an Waffen.",
+   "en": "The eastern branch of the Coastal Eagle gun shop with a large selection of weapons.",
+   "es": "La sucursal oriental de la tienda de armas Coastal Eagle, con una amplia selección de armas.",
+   "fr": "La succursale est du magasin d'armes Coastal Eagle, avec un vaste choix d'armes.",
+   "pt": "A filial leste da loja de armas Coastal Eagle, com uma grande variedade de armas.",
+   "ru": "Восточный филиал оружейного магазина Coastal Eagle с большим ассортиментом оружия."
+  },
+  "id": "city_weapon_shop_east",
+  "marker_type": 41,
+  "names": {
+   "de": "Waffenladen: Ost",
+   "en": "Gun Shop: East",
+   "es": "Tienda de armas: Este",
+   "fr": "Magasin d'armes\\u00A0: est",
+   "pt": "Loja de Armas: Leste",
+   "ru": "Оружейный магазин: Восток"
+  },
+  "rewards": [
+   "rc556_m3",
+   "rifle_ammo_1",
+   "weapon_cleaning_2",
+   "weapon_trinket_3"
+  ]
+ },
+ {
+  "descriptions": {
+   "de": "Die westliche Filiale des Waffenladens Coastal Eagle mit einer großen Auswahl an Waffen.",
+   "en": "The western branch of the Coastal Eagle gun shop with a large selection of weapons.",
+   "es": "La sucursal occidental de la tienda de armas Coastal Eagle, con una amplia selección de armas.",
+   "fr": "La succursale ouest du magasin d'armes Coastal Eagle, avec un vaste choix d'armes.",
+   "pt": "A filial oeste da loja de armas Coastal Eagle, com uma grande variedade de armas.",
+   "ru": "Западный филиал оружейного магазина Coastal Eagle с большим ассортиментом оружия."
+  },
+  "id": "city_weapon_shop_west",
+  "marker_type": 41,
+  "names": {
+   "de": "Waffenladen: West",
+   "en": "Gun Shop: West",
+   "es": "Tienda de armas: Oeste",
+   "fr": "Magasin d'armes\\u00A0: ouest",
+   "pt": "Loja de Armas: Oeste",
+   "ru": "Оружейный магазин: Запад"
+  },
+  "rewards": [
+   "rc556_m3",
+   "rifle_ammo_1",
+   "weapon_cleaning_2",
+   "weapon_trinket_3"
+  ]
+ }
+]

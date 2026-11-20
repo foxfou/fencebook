@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* Design tokens: warm dark background, lime accent like the game UI, rarity colors like the bag. */
+/* static: always emit all variables, even without utilities (rarity colors are used only in inline styles). */
+@theme static {
+  --color-bg: #12110f;
+  --color-surface: #1a1816;
+  --color-surface-2: #23211e;
+  --color-field: #161513;
+  --color-line: #2c2925;
+  --color-line-2: #3d3934;
+  --color-accent: #c9f33a;
+  --color-accent-ink: #12110f;
+  --color-ink: #ece8e2;
+  --color-ink-2: #a09b94;
+  --color-ink-3: #6e6a64;
+
+  --color-r0: #6e6a64;
+  --color-r1: #8f8b85;
+  --color-r2: #3cd070;
+  --color-r4: #b87cf8;
+  --color-r5: #f59e0b;
+  --color-r6: #ef4444;
+
+  --font-display: var(--nf-display), "Bahnschrift Condensed", "Arial Narrow", sans-serif;
+  --font-body: var(--nf-body), "Segoe UI", system-ui, sans-serif;
+}
+
+html {
+  background: var(--color-bg);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Skewed buttons and tabs, like the game UI. The content is straightened by the reverse skew. */
+.skew {
+  transform: skewX(-9deg);
+  border-radius: 4px;
+}
+.skew > * {
+  display: inline-block;
+  transform: skewX(9deg);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+/* Inventory grid: a tile spans as many cells as the item has slots. */
+.inv-grid {
+  --cell: 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--cell));
+  grid-auto-rows: var(--cell);
+  grid-auto-flow: dense;
+  gap: 4px;
+  justify-content: start;
+}
+@media (min-width: 768px) {
+  .inv-grid {
+    --cell: 92px;
+  }
+}
+
+.tile {
+  --r: var(--color-r0);
+  position: relative;
+  grid-column: span var(--w, 1);
+  grid-row: span var(--h, 1);
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, var(--r) 40%, transparent);
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--r) 40%, #0d0c0b) 0%,
+    color-mix(in srgb, var(--r) 12%, #0d0c0b) 100%
+  );
+  transition: border-color 0.12s ease, transform 0.12s ease;
+}
+.tile:hover,
+.tile:focus-within {
+  border-color: var(--r);
+  z-index: 5;
+}
+.tile img {
+  position: absolute;
+  inset: 9%;
+  width: 82%;
+  height: 82%;
+  object-fit: contain;
+  pointer-events: none;
+}
+.tile .price {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 0.78rem;
+  color: var(--color-ink);
+  text-shadow: 0 1px 2px #000;
+}
+
+/* Hover tooltip */
+.tile .tip {
+  display: none;
+  position: absolute;
+  z-index: 30;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  min-width: 150px;
+  max-width: 240px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-line-2);
+  border-top: 3px solid var(--r);
+  border-radius: 3px;
+  background: var(--color-surface);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.6);
+  pointer-events: none;
+}
+.tile:hover .tip,
+.tile:focus-within .tip {
+  display: block;
+}
+
+/* Single tile on the item page */
+.tile-solo {
+  --cell: 112px;
+  width: calc(var(--w, 1) * var(--cell) + (var(--w, 1) - 1) * 4px);
+  height: calc(var(--h, 1) * var(--cell) + (var(--h, 1) - 1) * 4px);
+}

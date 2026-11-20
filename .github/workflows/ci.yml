@@ -1,0 +1,29 @@
+name: CI
+
+# Checks the code on every push to main and every pull request. Publishes nothing.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build Next.js
+        run: npm run build
+
+      - name: Build for Cloudflare Workers
+        run: npx opennextjs-cloudflare build
