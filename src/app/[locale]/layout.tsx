@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { bodyFont, displayFont } from "@/lib/fonts";
 import { getDict, isLocale, locales } from "@/lib/i18n";
-import { BRAND, GAME, siteUrl } from "@/lib/site";
+import { BRAND, siteUrl } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -18,9 +18,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = isLocale(locale) ? getDict(locale) : getDict("ru");
   return {
     metadataBase: new URL(siteUrl),
-    title: { default: `${BRAND} · ${GAME}`, template: `%s · ${BRAND}` },
-    description: t.catalog.lead,
+    title: { default: t.seo.siteTitle, template: `%s | ${BRAND}` },
+    description: t.seo.siteDescription,
     applicationName: BRAND,
+    openGraph: { type: "website", siteName: BRAND },
+    twitter: { card: "summary_large_image" },
+    formatDetection: { telephone: false },
   };
 }
 

@@ -1,5 +1,7 @@
 // Working name of the site. The final brand is not decided: change it ONLY here (and the site URL below).
-export const BRAND = "Fencebook";
+// The logo shows the two parts in two colors: "FENCE" + "BOOK".
+export const BRAND_PARTS = ["Fence", "book"] as const;
+export const BRAND = BRAND_PARTS.join("");
 
 // Name of the game this reference covers. It is not the site brand. Do not change it.
 export const GAME = "ROB RUN";

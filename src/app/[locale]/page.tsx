@@ -1,25 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ItemBrowser } from "@/components/ItemBrowser";
-import { toListItems } from "@/lib/catalog";
-import { getDict, isLocale, locales } from "@/lib/i18n";
-import { openGraph } from "@/lib/seo";
-import { BRAND, GAME } from "@/lib/site";
+import { items, toListItems } from "@/lib/catalog";
+import { getDict, isLocale } from "@/lib/i18n";
+import { alternates, openGraph } from "@/lib/seo";
+import { BRAND } from "@/lib/site";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const t = getDict(locale);
-  // The title template from the layout does not apply to page.tsx in the same segment, so the title is set here.
-  const heading = locale === "ru" ? `${t.catalog.title} ${GAME}` : `${GAME} ${t.catalog.title}`;
   return {
-    title: { absolute: `${heading} · ${BRAND}` },
-    description: t.catalog.lead,
-    openGraph: openGraph({ locale, title: heading, description: t.catalog.lead, path: `/${locale}` }),
-    alternates: {
-      canonical: `/${locale}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
-    },
+    // The title template from the layout does not apply to page.tsx in the same segment, so the full title is set here.
+    title: { absolute: `${t.seo.catalogTitle} | ${BRAND}` },
+    description: t.seo.catalogDescription(items.length),
+    openGraph: openGraph({ locale, title: t.seo.catalogTitle, description: t.seo.catalogShare, path: `/${locale}` }),
+    alternates: alternates(locale, ""),
   };
 }
 

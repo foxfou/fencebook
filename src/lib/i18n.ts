@@ -10,10 +10,10 @@ export function isLocale(v: string): v is Locale {
 
 const ru = {
   brand: BRAND,
-  brandSub: GAME,
+  brandTag: `справочник ${GAME}`,
   nav: { items: "Предметы" },
   catalog: {
-    title: "Предметы",
+    title: `Предметы ${GAME}`,
     lead: `Каталог всех предметов игры ${GAME} с базовыми ценами, размером в слотах и ценой за слот.`,
     search: "Поиск по названию…",
     reset: "Сбросить",
@@ -51,6 +51,34 @@ const ru = {
     noData: "нет данных",
     baseNote: "Базовая цена скупщика, без бонуса известности.",
   },
+  // Texts for search engines and link previews. Server only, never sent to the client.
+  seo: {
+    siteTitle: `${BRAND} — справочник по ${GAME}`,
+    siteDescription: `Цены у скупщика, размеры в слотах и выгода за слот для каждого предмета ${GAME}.`,
+    catalogTitle: `Предметы ${GAME}: цены, размеры и цена за слот`,
+    catalogDescription: (n: number) =>
+      `Все ${n} предметов ${GAME} в одном месте: цена у скупщика, размер в слотах и выгода за слот. Узнайте, что выносить, а что бросать.`,
+    catalogShare: `Цены у скупщика, размеры в слотах и выгода за слот. Узнайте, что выносить из забега.`,
+    itemTitle: (name: string) => `${name} — цена и размер в ${GAME}`,
+    itemLead: (name: string, price: string | null, size: string | null, rarity: string | null) =>
+      [
+        `${name} в ${GAME}`,
+        [price && `цена у скупщика ${price}`, size && `размер ${size}`, rarity && rarity.toLowerCase()]
+          .filter(Boolean)
+          .join(", "),
+      ]
+        .filter(Boolean)
+        .join(": ") + ".",
+  },
+  // Captions on the link preview images
+  og: {
+    catalogHeadline: ["Все предметы", GAME],
+    catalogPoints: ["Цены у скупщика", "Размеры в слотах", "Цена за слот"],
+    fencePrice: "Цена у скупщика",
+    size: "Размер",
+    perSlot: "За слот",
+    noPrice: "нет данных",
+  },
   categories: {
     valuables: "Ценности",
     base: "База и постройки",
@@ -72,8 +100,7 @@ const ru = {
     "6": "Экзотический",
   } as Record<string, string>,
   footer: {
-    disclaimer:
-      `${BRAND} — неофициальный справочник по игре ${GAME}. Не связан с Kefir; права на игру и её материалы принадлежат правообладателю.`,
+    disclaimer: `${BRAND} — неофициальный справочник по игре ${GAME}. Не связан с Kefir; права на игру и её материалы принадлежат правообладателю.`,
     data: "Данные: билд игры",
   },
   notFound: "Страница не найдена",
@@ -83,10 +110,10 @@ export type Dict = typeof ru;
 
 const en: Dict = {
   brand: BRAND,
-  brandSub: GAME,
+  brandTag: `${GAME} database`,
   nav: { items: "Items" },
   catalog: {
-    title: "Items",
+    title: `${GAME} items`,
     lead: `Every item in ${GAME} with base prices, size in slots and value per slot.`,
     search: "Search by name…",
     reset: "Reset",
@@ -124,6 +151,32 @@ const en: Dict = {
     noData: "no data",
     baseNote: "Base fence price, before the notoriety bonus.",
   },
+  seo: {
+    siteTitle: `${BRAND} — ${GAME} database`,
+    siteDescription: `Fence prices, slot sizes and value per slot for every ${GAME} item.`,
+    catalogTitle: `${GAME} Items: Prices, Slot Sizes and Value per Slot`,
+    catalogDescription: (n: number) =>
+      `All ${n} ${GAME} items in one place: fence price, slot size and value per slot. See what to carry out and what to drop.`,
+    catalogShare: `Fence prices, slot sizes and value per slot. Know what to carry out of a run.`,
+    itemTitle: (name: string) => `${name}: Price and Size in ${GAME}`,
+    itemLead: (name: string, price: string | null, size: string | null, rarity: string | null) =>
+      [
+        `${name} in ${GAME}`,
+        [price && `fence price ${price}`, size && `size ${size}`, rarity && rarity.toLowerCase()]
+          .filter(Boolean)
+          .join(", "),
+      ]
+        .filter(Boolean)
+        .join(": ") + ".",
+  },
+  og: {
+    catalogHeadline: ["Every item in", GAME],
+    catalogPoints: ["Fence prices", "Slot sizes", "Value per slot"],
+    fencePrice: "Fence price",
+    size: "Size",
+    perSlot: "Per slot",
+    noPrice: "no data",
+  },
   categories: {
     valuables: "Valuables",
     base: "Base & buildings",
@@ -145,8 +198,7 @@ const en: Dict = {
     "6": "Exotic",
   },
   footer: {
-    disclaimer:
-      `${BRAND} is an unofficial reference for the game ${GAME}. Not affiliated with Kefir; rights to the game and its materials belong to the rights holder.`,
+    disclaimer: `${BRAND} is an unofficial reference for the game ${GAME}. Not affiliated with Kefir; rights to the game and its materials belong to the rights holder.`,
     data: "Data: game build",
   },
   notFound: "Page not found",

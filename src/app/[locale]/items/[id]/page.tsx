@@ -5,7 +5,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { itemDescription, itemName, items, itemsById } from "@/lib/catalog";
 import { money } from "@/lib/format";
 import { getDict, isLocale, locales } from "@/lib/i18n";
-import { openGraph } from "@/lib/seo";
+import { alternates, clip, openGraph } from "@/lib/seo";
 
 export const dynamicParams = false;
 
@@ -19,16 +19,21 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const { locale, id } = await params;
   const item = itemsById.get(id);
   if (!isLocale(locale) || !item) return {};
-  const title = itemName(item, locale);
-  const description = itemDescription(item, locale) || undefined;
+  const t = getDict(locale);
+  const name = itemName(item, locale);
+  const title = t.seo.itemTitle(name);
+  const lead = t.seo.itemLead(
+    name,
+    item.sell !== null ? money(item.sell, locale) : null,
+    item.size ? `${item.size[0]}×${item.size[1]}` : null,
+    item.rarity !== null ? (t.rarities[String(item.rarity)] ?? null) : null,
+  );
+  const desc = itemDescription(item, locale);
   return {
     title,
-    description,
-    openGraph: openGraph({ locale, title, description, path: `/${locale}/items/${id}` }),
-    alternates: {
-      canonical: `/${locale}/items/${id}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}/items/${id}`])),
-    },
+    description: clip(desc ? `${lead} ${desc}` : lead, 160),
+    openGraph: openGraph({ locale, title, description: clip(lead, 200), path: `/${locale}/items/${id}` }),
+    alternates: alternates(locale, `/items/${id}`),
   };
 }
 

@@ -48,6 +48,9 @@ Token permissions (create it in the Cloudflare account that owns the zone):
 - `src/lib/catalog.ts`: reads the catalog at build time; only a light list for filtering is sent to the client.
 - `src/components/ItemBrowser.tsx`: the catalog with an inventory-style grid (a tile spans as many cells as the item has slots), search, filters by category, rarity and price, and sorting.
 - `src/app/globals.css`: design tokens (colors, fonts, rarity tiles). Fonts: Sofia Sans Extra Condensed and Roboto Condensed (both OFL).
+- `src/components/Logo.tsx`: the brand mark (a slanted plate with an "F") and the logo. The favicons (`src/app/icon.svg`, `favicon.ico`, `apple-icon.png`) use the same shapes.
+- `src/app/[locale]/opengraph-image.tsx` and `src/app/[locale]/items/[id]/opengraph-image.tsx`: link preview images. They are rendered to PNG at build time, because chat apps do not accept SVG previews. The build downloads the two fonts from Google Fonts for them.
+- `src/app/sitemap.ts` and `src/app/robots.ts`: `sitemap.xml` with language alternates, and `robots.txt`.
 
 ## Configuration
 
