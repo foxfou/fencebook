@@ -5,5 +5,6 @@ export const BRAND = "Fencebook";
 export const GAME = "ROB RUN";
 
 // Site URL for canonical and hreflang links. Set it at build time: NEXT_PUBLIC_SITE_URL=https://your-domain
-// For a deploy it lives in .env.production, which is not part of the repository.
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+// For a local deploy it lives in .env.production, which is not part of the repository.
+// "||" (not "??") on purpose: an empty value from CI must fall back to the default, because new URL("") throws.
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";

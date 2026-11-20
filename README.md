@@ -26,7 +26,19 @@ These files are **not edited by hand**. A separate pipeline, which lives outside
 
 ## CI
 
-`.github/workflows/ci.yml` runs on every push to `main` and every pull request: `npm ci`, lint, `npm run build`, and the Cloudflare build (on Linux). `.github/workflows/deploy.yml` publishes the site but runs **only when triggered manually** (Actions, Deploy, Run workflow). It needs the secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` and the variable `SITE_URL`.
+- `.github/workflows/ci.yml` runs on every push to `main` and every pull request: `npm ci`, lint, `npm run build`, and the Cloudflare build (on Linux).
+- `.github/workflows/deploy.yml` deploys to Cloudflare Workers on every push to `main`. It also runs by hand (Actions, Deploy, Run workflow). Markdown-only changes do not trigger it.
+- Set these once in Settings, Secrets and variables, Actions:
+  - secrets: `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
+  - variable: `SITE_URL`, for example `https://fencebook.funchosa.com`
+- If the secrets are missing, the job ends with a warning and deploys nothing.
+
+Token permissions (create it in the Cloudflare account that owns the zone):
+- Account: Workers Scripts, Edit
+- Zone: Workers Routes, Edit
+- Zone: DNS, Edit
+- Zone: Zone, Read
+- Limit the zone resources to the site's domain.
 
 ## How it is organized
 
