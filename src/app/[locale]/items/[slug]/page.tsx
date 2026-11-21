@@ -8,6 +8,7 @@ import { PAGE_CONTAINER } from "@/components/PageHeader";
 import { categoryPath, itemDescription, itemName, itemPath, items, itemsBySlug, itemSlug } from "@/lib/catalog";
 import { money } from "@/lib/format";
 import { getDict, isLocale, locales } from "@/lib/i18n";
+import { itemOverview } from "@/lib/overviews";
 import { parsePurchase } from "@/lib/purchase";
 import { categoryRanks } from "@/lib/ranks";
 import { alternates, clip, shareTags } from "@/lib/seo";
@@ -172,9 +173,10 @@ export default async function ItemPage({ params }: { params: Params }) {
     hasIcon: Boolean(i.icon),
   }));
 
-  // A short text made from the data, so every item page has its own words, not only the line from the game.
+  // The hand-written overview when there is one in this language (data/overviews), otherwise
+  // a short text made from the data, so every item page has its own words, not only the line from the game.
   const ranks = categoryRanks(item, items);
-  const overview = t.item.summary({
+  const overview = itemOverview(item.id, locale) ?? t.item.summary({
     name,
     rarity: rarity ? (t.rarities[String(rarity)] ?? null) : null,
     category,
