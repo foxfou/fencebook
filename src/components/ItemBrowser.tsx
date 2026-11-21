@@ -227,7 +227,7 @@ export function ItemBrowser({ items, locale, t, categories, rarities }: Props) {
                 className="tile"
                 style={{ "--w": i.w, "--h": i.h, "--r": `var(--color-r${i.rarity})` } as CSSProperties}
               >
-                <Link href={`/${locale}/items/${i.id}`} className="absolute inset-0 block" aria-label={i.name}>
+                <Link href={`/${locale}/items/${i.slug}`} className="absolute inset-0 block" aria-label={i.name}>
                   {i.hasIcon && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={`/icons/${i.id}.png`} alt="" loading="lazy" decoding="async" />

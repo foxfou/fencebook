@@ -657,7 +657,7 @@ function ShipmentCard({ node, graph, byId, t, locale, pinned, status, onAdd, onR
         )}
         {status === "required" && <span className="text-xs text-ink-3">{t.neededForPlan}</span>}
         <Link
-          href={`/${locale}/items/${node.item}`}
+          href={`/${locale}${node.itemPath}`}
           tabIndex={pinned ? undefined : -1}
           className="ml-auto text-sm text-accent hover:underline"
         >

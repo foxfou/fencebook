@@ -34,6 +34,8 @@ export interface Item {
 /** Light record for the list. Only this goes to the client, not the whole catalog. */
 export interface ListItem {
   id: string;
+  /** URL slug of the item page */
+  slug: string;
   name: string;
   /** search string: ru and en names and the id, in lower case */
   search: string;
