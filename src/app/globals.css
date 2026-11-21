@@ -29,6 +29,36 @@
 :root {
   /* Height of the sticky header (py-2.5 + the 2.5rem nav buttons + 1px border); pages that fill the screen subtract it. */
   --header-h: calc(3.75rem + 1px);
+  /* Height of the one-line footer of full-screen tool pages (2.25rem + 1px border). */
+  --footer-compact-h: calc(2.25rem + 1px);
+}
+
+/* Full-screen tool pages (marked data-app-page, like the shipments tree) fill the screen between the header and
+   the footer, so the footer becomes one thin line: no page scroll, and almost no room taken from the tool.
+   Wide screens only; on a phone such pages scroll anyway and keep the normal footer. */
+@media (min-width: 1024px) {
+  body:has([data-app-page]) .site-footer {
+    margin-top: 0;
+  }
+  body:has([data-app-page]) .site-footer-inner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 2.25rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  body:has([data-app-page]) .site-footer-inner > p {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  body:has([data-app-page]) .site-footer-inner > p:last-child {
+    flex: none;
+  }
 }
 
 /* Scrollbars: thin and dark, in the site colours, for every scrolling area (page, plan list, panels).
@@ -173,6 +203,13 @@ body {
   --cell: 112px;
   width: calc(var(--w, 1) * var(--cell) + (var(--w, 1) - 1) * 4px);
   height: calc(var(--h, 1) * var(--cell) + (var(--h, 1) - 1) * 4px);
+}
+
+/* Hide the browser's own clear button in search fields: the site draws its own, the same in every browser. */
+.search-input::-webkit-search-cancel-button,
+.search-input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* Shipments tree: a pannable canvas with a block per category and a box per shipment. */

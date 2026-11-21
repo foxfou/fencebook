@@ -208,6 +208,41 @@ describe("computePlan with land plots", () => {
       if (n.tier !== null) expect(at(plots[n.tier - 1])).toBeLessThan(at(id));
     }
   });
+
+  describe("with a settlement the player already has", () => {
+    it("does not research or rent the plots up to it again", () => {
+      const p = computePlan(g, ["t2"], plots, 2);
+      expect(p.order).toEqual(["h", "o", "p3", "t1", "t2"]);
+      expect(p.rented).toEqual(["p3"]);
+      expect(p.rent).toBe(300);
+      expect(p.research).toBe(10 + 20 + 3 + 30 + 40);
+      expect(p.total).toBe(p.research + p.rent);
+    });
+
+    it("opens shipments up to its tier right away", () => {
+      const p = computePlan(g, ["o"], plots, 2);
+      expect(p.order).toEqual(["h", "o"]);
+      expect(p.rent).toBe(0);
+    });
+
+    it("needs nothing extra with the top settlement", () => {
+      const p = computePlan(g, ["t2"], plots, 3);
+      expect(p.rented).toEqual([]);
+      expect(p.order).toEqual(["h", "o", "t1", "t2"]);
+    });
+
+    it("leaves an owned plot out even when it is a prerequisite of a chosen plot", () => {
+      const p = computePlan(g, ["p3"], plots, 1);
+      expect(p.order).toEqual(["p2", "p3"]);
+      expect(p.rented).toEqual(["p2"]);
+    });
+
+    it("treats 0 and out-of-range values safely", () => {
+      expect(computePlan(g, ["t2"], plots, 0)).toEqual(computePlan(g, ["t2"], plots));
+      expect(computePlan(g, ["t2"], plots, 9).rented).toEqual([]);
+      expect(computePlan(g, ["t2"], plots, -1)).toEqual(computePlan(g, ["t2"], plots));
+    });
+  });
 });
 
 describe("addPick and removePick", () => {
@@ -274,6 +309,16 @@ describe("real shipments data", () => {
 
   it("the plot chain exists in the data", () => {
     for (const id of PLOT_PATH) expect(g.byId.has(id)).toBe(true);
+  });
+
+  it("TAG-12K Mk3 for a player with a level 2 settlement: only plot 3 is left to rent", () => {
+    const full = computePlan(g, ["tag12k_m3"]);
+    const p = computePlan(g, ["tag12k_m3"], PLOT_PATH, 2);
+    expect(p.order).toEqual(["harris500_m1", "ordr12_m1", "plot_sale_3", "tag12k_m1", "tag12k_m2", "tag12k_m3"]);
+    expect(p.rented).toEqual(["plot_sale_3"]);
+    const plot = (id: string) => g.byId.get(id)!;
+    const saved = ["plot_sale_1", "plot_sale_2"].reduce((s, id) => s + plot(id).cost + (plot(id).buy ?? 0), 0);
+    expect(p.total).toBe(full.total - saved);
   });
 
   it("TAG-12K Mk3: Harris, plots 1 and 2, ORDR-12, plot 3, then the TAG-12K line (the owner's example)", () => {
