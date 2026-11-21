@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Dict } from "@/lib/i18n";
 
-/** Main navigation. The active section is lime, like the game's buttons. */
+/** Main navigation. The active section is lime, like the game's buttons. On the landing page none is active. */
 export function NavLinks({ locale, t }: { locale: string; t: Dict["nav"] }) {
   const pathname = usePathname() || "/";
-  const onShipments = pathname.startsWith(`/${locale}/shipments`);
+  const inSection = (path: string) => pathname === path || pathname.startsWith(`${path}/`);
   const links = [
-    { href: `/${locale}`, label: t.items, active: !onShipments },
-    { href: `/${locale}/shipments`, label: t.shipments, active: onShipments },
-  ];
+    { href: `/${locale}/items`, label: t.items },
+    { href: `/${locale}/shipments`, label: t.shipments },
+  ].map((l) => ({ ...l, active: inSection(l.href) }));
   return (
     <nav className="ml-4 flex gap-2">
       {links.map((l) => (

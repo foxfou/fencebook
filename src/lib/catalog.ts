@@ -23,7 +23,8 @@ export function itemPath(item: Item | string): string {
 }
 
 export const manifest = manifestJson as {
-  game: { buildid: number };
+  /** lastupdated: when Steam updated the game to this build (Unix seconds); the date of the data. */
+  game: { buildid: number; lastupdated?: number };
   dataset: { version: number | null };
   counts: { items: number };
 };
@@ -36,8 +37,24 @@ export function itemDescription(item: Item, locale: Locale | string): string {
   return item.descriptions[locale] || item.descriptions.en || "";
 }
 
-export function toListItems(locale: Locale): ListItem[] {
-  return items.map((i) => ({
+/** Categories that have items, the biggest first. Each has a page: /<locale>/items/category/<id>. */
+export const categoryIds: string[] = (() => {
+  const count = new Map<string, number>();
+  for (const i of items) if (i.category) count.set(i.category, (count.get(i.category) ?? 0) + 1);
+  return [...count.keys()].sort((a, b) => count.get(b)! - count.get(a)! || a.localeCompare(b));
+})();
+
+export function itemsInCategory(category: string): Item[] {
+  return items.filter((i) => i.category === category);
+}
+
+/** Path of a category page without the language prefix. */
+export function categoryPath(category: string): string {
+  return `/items/category/${category}`;
+}
+
+export function toListItems(locale: Locale, list: Item[] = items): ListItem[] {
+  return list.map((i) => ({
     id: i.id,
     slug: itemSlug(i),
     name: itemName(i, locale),

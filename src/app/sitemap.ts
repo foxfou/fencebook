@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { items } from "@/lib/catalog";
+import { categoryIds, categoryPath, itemPath, items, manifest } from "@/lib/catalog";
 import { locales } from "@/lib/i18n";
 import { siteUrl } from "@/lib/site";
 
@@ -14,26 +14,27 @@ function languages(path: string) {
   };
 }
 
+// The date of the data: when Steam updated the game to the build the catalog comes from. Search engines use it
+// to recrawl after a patch. Without it (an old manifest) the field is left out rather than set to the build time.
+const lastModified = manifest.game.lastupdated ? new Date(manifest.game.lastupdated * 1000) : undefined;
+
+/** One entry per language for a path without the language prefix. */
+function entries(path: string, priority: number): MetadataRoute.Sitemap {
+  return locales.map((l) => ({
+    url: `${siteUrl}/${l}${path}`,
+    ...(lastModified ? { lastModified } : {}),
+    changeFrequency: "weekly" as const,
+    priority,
+    alternates: { languages: languages(path) },
+  }));
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const catalog = locales.map((l) => ({
-    url: `${siteUrl}/${l}`,
-    changeFrequency: "weekly" as const,
-    priority: 1,
-    alternates: { languages: languages("") },
-  }));
-  const shipments = locales.map((l) => ({
-    url: `${siteUrl}/${l}/shipments`,
-    changeFrequency: "weekly" as const,
-    priority: 0.9,
-    alternates: { languages: languages("/shipments") },
-  }));
-  const pages = items.flatMap((i) =>
-    locales.map((l) => ({
-      url: `${siteUrl}/${l}/items/${i.id}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-      alternates: { languages: languages(`/items/${i.id}`) },
-    })),
-  );
-  return [...catalog, ...shipments, ...pages];
+  return [
+    ...entries("", 1),
+    ...entries("/items", 0.9),
+    ...entries("/shipments", 0.9),
+    ...categoryIds.flatMap((c) => entries(categoryPath(c), 0.8)),
+    ...items.flatMap((i) => entries(itemPath(i), 0.7)),
+  ];
 }

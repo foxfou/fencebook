@@ -5,7 +5,7 @@ import { getDict, isLocale, locales } from "@/lib/i18n";
 import { C, OG_SIZE, OgLogo, OgStripes, iconData, ogFonts, siteHost, tileStyle } from "@/lib/og";
 import type { Item } from "@/lib/types";
 
-// Link preview image for the catalog: /<locale>/og.png.
+// Link preview image for the item catalog: /<locale>/items/og.png.
 // A route named og.png (not the opengraph-image convention) so the exported file keeps the .png extension
 // and the static host serves it as image/png.
 const size = OG_SIZE;

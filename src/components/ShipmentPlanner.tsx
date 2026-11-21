@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useMemo, useState, useSyncExternalStore, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { money } from "@/lib/format";
 import type { Dict } from "@/lib/i18n";
 import {
@@ -17,6 +17,7 @@ import {
   type ShipmentGraph,
 } from "@/lib/shipments";
 import { DEFAULT_LAYOUT, layoutShipments } from "@/lib/shipmentLayout";
+import { SearchField } from "./SearchField";
 import { ShipmentTree, type FocusRequest, type Rect, type TreeBlock, type TreeNode } from "./ShipmentTree";
 
 interface Props {
@@ -172,6 +173,21 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
 
   const onSelect = useCallback((id: string) => setPinned((cur) => (cur === id ? null : id)), []);
 
+  // Opened from an item page (/shipments?item=<item slug>): that shipment is selected and centred, once.
+  const linkHandled = useRef(false);
+  useEffect(() => {
+    if (linkHandled.current) return;
+    linkHandled.current = true;
+    const slug = new URLSearchParams(window.location.search).get("item");
+    const node = slug ? nodes.find((n) => n.itemPath === `/items/${slug}`) : undefined;
+    const rect = node && nodeRect(node.id);
+    if (!node || !rect) return;
+    // The address is read only after hydration, so the selection is set here and not in the initial state.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setPinned(node.id);
+    show(rect, "frame");
+  }, [nodes, nodeRect, show]);
+
   const onQuery = (value: string) => {
     setQuery(value);
     const v = value.trim().toLowerCase();
@@ -209,54 +225,13 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
   const filterBar = (
     <section className="shrink-0 rounded border border-line bg-surface px-2.5 py-2">
       <div className="flex flex-wrap items-center gap-2">
-        {/* Search field: a magnifier inside on the left (decorative, the field has its own label), the field gets
-            room for it; a clear button on the right while there is text (the browser's own one is hidden, it looks
-            different in every browser). The icon turns lime while the field is focused. Esc clears too. */}
-        <div className="group relative min-w-[12rem] flex-1 sm:max-w-sm">
-          <svg
-            viewBox="0 0 24 24"
-            width="16"
-            height="16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            aria-hidden="true"
-            className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-3 group-focus-within:text-accent"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => onQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Escape" && query) {
-                e.preventDefault();
-                onQuery("");
-              }
-            }}
-            placeholder={t.search}
-            aria-label={t.search}
-            autoComplete="off"
-            spellCheck={false}
-            className="search-input w-full rounded border border-line-2 bg-field py-1.5 pl-8 pr-8 text-sm outline-none placeholder:text-ink-3 focus:border-accent"
-          />
-          {query && (
-            <button
-              type="button"
-              aria-label={t.clearSearch}
-              title={t.clearSearch}
-              onClick={() => onQuery("")}
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded p-1 text-ink-3 hover:text-ink"
-            >
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
-                <path d="M6 6l12 12M18 6 6 18" />
-              </svg>
-            </button>
-          )}
-        </div>
+        <SearchField
+          value={query}
+          onChange={onQuery}
+          placeholder={t.search}
+          clearLabel={t.clearSearch}
+          className="min-w-[12rem] flex-1 sm:max-w-sm"
+        />
 
         <button
           type="button"

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { CategoryNav } from "@/components/CategoryNav";
+import { Faq } from "@/components/Faq";
 import { ItemBrowser } from "@/components/ItemBrowser";
 import { PAGE_CONTAINER, PageHeader } from "@/components/PageHeader";
-import { items, toListItems } from "@/lib/catalog";
+import { items, manifest, toListItems } from "@/lib/catalog";
 import { getDict, isLocale } from "@/lib/i18n";
 import { alternates, shareTags } from "@/lib/seo";
 import { BRAND } from "@/lib/site";
@@ -19,10 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       locale,
       title: t.seo.catalogTitle,
       description: t.seo.catalogShare,
-      path: `/${locale}`,
-      image: `/${locale}/og.png`,
+      path: `/${locale}/items`,
+      image: `/${locale}/items/og.png`,
     }),
-    alternates: alternates(locale, ""),
+    alternates: alternates(locale, "/items"),
   };
 }
 
@@ -33,15 +35,27 @@ export default async function CatalogPage({ params }: { params: Promise<{ locale
   return (
     <div className={PAGE_CONTAINER}>
       <PageHeader title={t.catalog.title} lead={t.catalog.lead} />
+      <div className="mt-5 lg:hidden">
+        <CategoryNav locale={locale} label={t.catalog.categoriesNav} allLabel={t.catalog.allCategories} names={t.categories} />
+      </div>
       <div className="mt-6">
         <ItemBrowser
           items={toListItems(locale)}
           locale={locale}
           t={t.catalog}
-          categories={t.categories}
           rarities={t.rarities}
+          categoryNav={
+            <CategoryNav
+              locale={locale}
+              label={t.catalog.categoriesNav}
+              allLabel={t.catalog.allCategories}
+              names={t.categories}
+              variant="list"
+            />
+          }
         />
       </div>
+      <Faq title={t.faq.title} items={t.faq.items(manifest.game.buildid)} />
     </div>
   );
 }

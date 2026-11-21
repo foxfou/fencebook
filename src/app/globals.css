@@ -92,6 +92,9 @@
 html {
   background: var(--color-bg);
   color-scheme: dark;
+  /* Always keep room for the scrollbar: otherwise a page that scrolls (items) and one that does not (shipments)
+     have different widths, and the centred header and content jump sideways when switching between them. */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -203,6 +206,96 @@ body {
   --cell: 112px;
   width: calc(var(--w, 1) * var(--cell) + (var(--w, 1) - 1) * 4px);
   height: calc(var(--h, 1) * var(--cell) + (var(--h, 1) - 1) * 4px);
+}
+
+/* Catalog filter panel: sticky beside the list, but only when the screen is tall enough for the whole panel.
+   No scroll box of its own: a sticky scrolling panel left its bottom edge unpainted after scrolling, and its scrollbar
+   looked out of place. On a shorter screen the panel simply scrolls with the page. */
+@media (min-width: 1024px) and (min-height: 800px) {
+  .filters-panel {
+    position: sticky;
+    top: calc(var(--header-h) + 1rem);
+    align-self: start;
+  }
+}
+
+/* Item page: the item lies on an inventory grid, like in the game's bag. */
+.item-stage {
+  --r: var(--color-r0);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  padding: 28px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  background:
+    radial-gradient(ellipse at 50% 45%, color-mix(in srgb, var(--r) 10%, transparent) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, transparent 0 27px, color-mix(in srgb, var(--color-line) 70%, transparent) 27px 28px),
+    repeating-linear-gradient(90deg, transparent 0 27px, color-mix(in srgb, var(--color-line) 70%, transparent) 27px 28px),
+    var(--color-surface);
+  overflow: hidden;
+}
+/* On the stage the tile is calmer than in the catalog: the item and the title should stand out, not the fill. */
+.item-stage .tile {
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--r) 26%, #0d0c0b) 0%,
+    color-mix(in srgb, var(--r) 8%, #0d0c0b) 100%
+  );
+}
+/* The tile shrinks to fit a narrow stage (a 4-wide item on a phone). */
+.item-stage {
+  container-type: inline-size;
+}
+.item-stage .tile-solo {
+  --cell: min(112px, calc((100cqi - 64px - (var(--w, 1) - 1) * 4px) / var(--w, 1)));
+}
+.item-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--r);
+}
+
+/* Key numbers of the item page. */
+.stat {
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  background: var(--color-surface);
+  padding: 12px 14px;
+}
+
+/* Card of a related item: the same tile as in the catalog, with the name and price under it. */
+.item-card {
+  --r: var(--color-r0);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  background: var(--color-surface);
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+.item-card:hover,
+.item-card:focus-visible {
+  border-color: var(--r);
+  background: var(--color-surface-2);
+}
+.item-card .tile {
+  aspect-ratio: 1;
+}
+.item-card-name {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 0.85rem;
+  line-height: 1.1rem;
+  min-height: 2.2rem;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 /* Hide the browser's own clear button in search fields: the site draws its own, the same in every browser. */

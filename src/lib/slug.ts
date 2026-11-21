@@ -16,8 +16,6 @@ export function slugify(text: string): string {
 interface Sluggable {
   id: string;
   names: Record<string, string | null>;
-  /** Fields the pipeline could not fill. Unreleased items reuse another item's name and miss everything. */
-  missing?: string[];
 }
 
 function commonPrefix(lists: string[][]): number {
@@ -32,8 +30,6 @@ function commonPrefix(lists: string[][]): number {
  * without the part the ids share and without the words already in the name.
  * For example painkiller_1 and painkiller_2 ("Painkillers") become painkillers-1 and painkillers-2,
  * and bolt_cutter and super_bolt_cutter ("Bolt Cutter") become bolt-cutter and bolt-cutter-super.
- * If only one item of the group has complete data, it keeps the plain name: the real Warehouse is "warehouse",
- * the unreleased items that borrow its name get suffixes.
  */
 export function buildSlugs(items: Sluggable[]): Map<string, string> {
   const groups = new Map<string, Sluggable[]>();
@@ -54,16 +50,10 @@ export function buildSlugs(items: Sluggable[]): Map<string, string> {
     const tokens = group.map((i) => slugify(i.id).split("-"));
     const shared = commonPrefix(tokens);
     const suffixes = tokens.map((t) => t.slice(shared).filter((w) => !baseWords.has(w)).join("-"));
-    const complete = group.filter((i) => !i.missing?.length);
-    const primary = complete.length === 1 ? complete[0] : null;
     group.forEach((item, k) => {
-      if (item === primary) {
-        slugs.set(item.id, base);
-        return;
-      }
       const suffix = suffixes[k];
-      // An empty suffix is fine only once and only if no primary item took the plain name.
-      const unique = suffixes.filter((s) => s === suffix).length === 1 && (suffix !== "" || !primary);
+      // An empty suffix is fine only once: that item keeps the plain name.
+      const unique = suffixes.filter((s) => s === suffix).length === 1;
       slugs.set(item.id, unique ? (suffix ? `${base}-${suffix}` : base) : `${base}-${slugify(item.id)}`);
     });
   }
