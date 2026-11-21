@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ItemBrowser } from "@/components/ItemBrowser";
+import { PAGE_CONTAINER, PageHeader } from "@/components/PageHeader";
 import { items, toListItems } from "@/lib/catalog";
 import { getDict, isLocale } from "@/lib/i18n";
 import { alternates, shareTags } from "@/lib/seo";
@@ -30,9 +31,8 @@ export default async function CatalogPage({ params }: { params: Promise<{ locale
   if (!isLocale(locale)) notFound();
   const t = getDict(locale);
   return (
-    <div className="mx-auto max-w-[1500px] px-4 py-6">
-      <h1 className="display text-4xl">{t.catalog.title}</h1>
-      <p className="mt-1 max-w-3xl text-ink-2">{t.catalog.lead}</p>
+    <div className={PAGE_CONTAINER}>
+      <PageHeader title={t.catalog.title} lead={t.catalog.lead} />
       <div className="mt-6">
         <ItemBrowser
           items={toListItems(locale)}
