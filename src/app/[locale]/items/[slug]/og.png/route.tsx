@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element -- the image renderer (satori) needs a plain <img>; next/image does not apply here */
 import { ImageResponse } from "next/og";
-import { itemName, items, itemsById } from "@/lib/catalog";
+import { itemName, items, itemsBySlug, itemSlug } from "@/lib/catalog";
 import { getDict, isLocale, locales } from "@/lib/i18n";
 import { C, OG_SIZE, OgLogo, OgStripes, RARITY_HEX, iconData, ogFonts, ogMoney, siteHost, tileStyle } from "@/lib/og";
 import { GAME } from "@/lib/site";
 
-// Link preview image for an item: /<locale>/items/<id>/og.png.
+// Link preview image for an item: /<locale>/items/<slug>/og.png.
 // A route named og.png (not the opengraph-image convention) so the exported file keeps the .png extension
 // and the static host serves it as image/png.
 const size = OG_SIZE;
@@ -14,7 +14,7 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return locales.flatMap((locale) => items.map((i) => ({ locale, id: i.id })));
+  return locales.flatMap((locale) => items.map((i) => ({ locale, slug: itemSlug(i) })));
 }
 
 function Stat({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
@@ -28,11 +28,11 @@ function Stat({ label, value, accent }: { label: string; value: string; accent?:
   );
 }
 
-export async function GET(_request: Request, { params }: { params: Promise<{ locale: string; id: string }> }) {
-  const { locale, id } = await params;
+export async function GET(_request: Request, { params }: { params: Promise<{ locale: string; slug: string }> }) {
+  const { locale, slug } = await params;
   const loc = isLocale(locale) ? locale : "ru";
   const t = getDict(loc);
-  const item = itemsById.get(id);
+  const item = itemsBySlug.get(slug);
   const fonts = await ogFonts();
 
   if (!item) {

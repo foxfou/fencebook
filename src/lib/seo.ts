@@ -33,7 +33,7 @@ export function shareTags(opts: {
   };
 }
 
-/** canonical + hreflang for a path without the language prefix ("" or "/items/<id>"). Russian is the default. */
+/** canonical + hreflang for a path without the language prefix ("", "/items" or "/items/<slug>"). Russian is the default. */
 export function alternates(locale: Locale, path: string): NonNullable<Metadata["alternates"]> {
   return {
     canonical: `/${locale}${path}`,

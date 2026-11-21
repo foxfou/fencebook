@@ -22,7 +22,7 @@ npm run deploy    # build and upload out/ to Cloudflare (requires: npx wrangler 
 - `data/catalog/items.json`, `buildings.json`, `manifest.json`: the item database (names and descriptions in 6 languages, sizes, prices, categories).
 - `public/icons/<id>.png`: item icons.
 
-These files are **not edited by hand**. A separate pipeline, which lives outside this repository, publishes them. To update after a game patch: run the pipeline, review the changes, then commit the updated `data/` and `public/icons/`.
+These files are **not edited by hand**. A separate pipeline, which lives outside this repository, publishes them. The pipeline also applies a small set of manual fixes: it leaves out unreleased placeholder items, and it fills in names or fields that the game files and the dataset lack. The `manual` field of an item lists the fields set this way. To update after a game patch: run the pipeline, review the changes, then commit the updated `data/` and `public/icons/`.
 
 ## CI
 
@@ -42,19 +42,23 @@ Token permissions (create it in the Cloudflare account that owns the zone):
 
 ## How it is organized
 
-- `src/app/[locale]/`: pages per language, the catalog (`page.tsx`) and the item page (`items/[id]/page.tsx`). Every page is generated at build time (`generateStaticParams`, `dynamicParams = false`).
-- `src/app/(root)/`: the page for `/`. On Cloudflare, `public/_redirects` sends `/` to `/ru`.
+- `src/app/[locale]/`: pages per language: the landing page (`page.tsx`), the item catalog (`items/page.tsx`), the item page (`items/[slug]/page.tsx`) and the shipments tree (`shipments/page.tsx`). Every page is generated at build time (`generateStaticParams`, `dynamicParams = false`).
+- `src/app/[locale]/items/category/[category]/page.tsx`: a page per item category with its own title and text, linked from the catalog, the item pages and the breadcrumbs.
+- Item pages have readable addresses built from the English name: `/ru/items/quality-refrigerant`. Items that share a name get a short suffix from their id (`painkillers-1`, `painkillers-2`). The rules are in `src/lib/slug.ts`; the slug is the same in every language.
+- `src/app/(root)/`: the page for `/`.
+- `src/app/%5Fredirects/route.ts`: writes `out/_redirects` for Cloudflare at build time. It sends `/` to `/ru` and the old item addresses (`/ru/items/<id>`) to the new ones with a permanent redirect.
 - `src/lib/i18n.ts`: UI, SEO and preview texts in Russian and English. Item names and descriptions come from the data in 6 languages.
 - `src/lib/catalog.ts`: reads the catalog at build time; only a light list for filtering is sent to the client.
 - `src/components/ItemBrowser.tsx`: the catalog with an inventory-style grid (a tile spans as many cells as the item has slots), search, filters by category, rarity and price, and sorting.
 - `src/app/globals.css`: design tokens (colors, fonts, rarity tiles). Fonts: Sofia Sans Extra Condensed and Roboto Condensed (both OFL).
 - `src/components/Logo.tsx`: the brand mark (a slanted plate with an "F") and the logo. The favicons (`src/app/icon.svg`, `favicon.ico`, `apple-icon.png`) use the same shapes.
-- `src/app/[locale]/og.png/route.tsx` and `src/app/[locale]/items/[id]/og.png/route.tsx`: link preview images, rendered to PNG at build time (chat apps do not accept SVG previews). They are routes named `og.png`, so the exported files keep the `.png` extension. The build downloads the two fonts from Google Fonts for them. Shared parts are in `src/lib/og.tsx`.
+- `src/app/[locale]/items/og.png/route.tsx` and `src/app/[locale]/items/[slug]/og.png/route.tsx`: link preview images, rendered to PNG at build time (chat apps do not accept SVG previews). They are routes named `og.png`, so the exported files keep the `.png` extension. The build downloads the two fonts from Google Fonts for them. Shared parts are in `src/lib/og.tsx`.
 - `src/lib/seo.ts`: canonical and hreflang links, Open Graph and Twitter tags.
 - `src/app/sitemap.ts` and `src/app/robots.ts`: `sitemap.xml` with language alternates, and `robots.txt`.
 
 ## Configuration
 
+- `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` and `NEXT_PUBLIC_YANDEX_VERIFICATION`: optional site ownership codes for Google Search Console and Yandex Webmaster. When set, the pages get the matching meta tags. In CI they come from the `GOOGLE_SITE_VERIFICATION` and `YANDEX_VERIFICATION` variables.
 - `NEXT_PUBLIC_SITE_URL`: the site address used for canonical, hreflang, preview and sitemap links (defaults to `http://localhost:3000`). For a local deploy it is kept in `.env.production` (not part of the repository); in CI it comes from the `SITE_URL` variable.
 - `wrangler.jsonc`: the Worker name (`rob-run-site`), the assets folder (`out/`) and the custom domain. A domain is bound to this Worker, so do not rename it (renaming requires rebinding the domain).
 

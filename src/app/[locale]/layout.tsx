@@ -24,6 +24,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: { type: "website", siteName: BRAND },
     twitter: { card: "summary_large_image" },
     formatDetection: { telephone: false },
+    // Site ownership codes for Google Search Console and Yandex Webmaster, set at build time (see README).
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+      yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION || undefined,
+    },
   };
 }
 

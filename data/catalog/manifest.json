@@ -1,8 +1,9 @@
 {
  "counts": {
   "buildings": 38,
+  "hidden": 12,
   "in_dataset": 481,
-  "incomplete": 26,
+  "incomplete": 14,
   "items": 499,
   "shipments": 172,
   "with_icon": 499
@@ -22,7 +23,8 @@
  },
  "game": {
   "buildid": 26807668,
-  "game_version": null
+  "game_version": null,
+  "lastupdated": 1795190408
  },
  "langs": [
   "de",

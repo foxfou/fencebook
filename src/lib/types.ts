@@ -10,6 +10,8 @@ export interface Item {
   icon_sha1: string | null;
   icon_px: [number, number] | null;
   in_dataset: boolean;
+  /** Hidden items (unreleased placeholders) are left out of the site catalog by the pipeline, so this is always false here. */
+  hidden: boolean;
   category: string | null;
   type: string | null;
   family: string | null;
@@ -29,11 +31,15 @@ export interface Item {
   loot_spot: string | null;
   loot_spot_count: number | null;
   missing: string[];
+  /** Fields set by hand in the pipeline's overrides (data/overrides.toml), not taken from the game or the dataset. */
+  manual: string[];
 }
 
 /** Light record for the list. Only this goes to the client, not the whole catalog. */
 export interface ListItem {
   id: string;
+  /** URL slug of the item page */
+  slug: string;
   name: string;
   /** search string: ru and en names and the id, in lower case */
   search: string;
