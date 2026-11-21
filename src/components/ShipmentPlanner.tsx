@@ -29,43 +29,51 @@ interface Props {
 }
 
 const STORAGE_KEY = "fencebook:shipments-plan";
+const OWNED_KEY = "fencebook:shipments-owned-level";
 const ROMAN = ["", "I", "II", "III"];
 
-// A tiny store over localStorage for useSyncExternalStore. If storage is unavailable (private mode, blocked),
-// the plan still works for the visit and is just not saved.
-let memoryPlan = "";
-const storeListeners = new Set<() => void>();
-
-function readStored(): string {
-  try {
-    return localStorage.getItem(STORAGE_KEY) ?? "";
-  } catch {
-    return memoryPlan;
-  }
-}
-
-function writeStored(value: string): void {
-  memoryPlan = value;
-  try {
-    localStorage.setItem(STORAGE_KEY, value);
-  } catch {
-    /* not saved, kept in memory */
-  }
-  storeListeners.forEach((l) => l());
-}
-
-function subscribeStored(listener: () => void): () => void {
-  storeListeners.add(listener);
-  // Another tab changed the plan.
-  const onStorage = (e: StorageEvent) => {
-    if (e.key === STORAGE_KEY) listener();
+/**
+ * A tiny store over one localStorage key for useSyncExternalStore. If storage is unavailable (private mode, blocked),
+ * the value still works for the visit and is just not saved. Another tab changing the key updates this one too.
+ */
+function createStoredValue(key: string) {
+  let memory = "";
+  const listeners = new Set<() => void>();
+  return {
+    read(): string {
+      try {
+        return localStorage.getItem(key) ?? "";
+      } catch {
+        return memory;
+      }
+    },
+    write(value: string): void {
+      memory = value;
+      try {
+        localStorage.setItem(key, value);
+      } catch {
+        /* not saved, kept in memory */
+      }
+      listeners.forEach((l) => l());
+    },
+    subscribe(listener: () => void): () => void {
+      listeners.add(listener);
+      const onStorage = (e: StorageEvent) => {
+        if (e.key === key) listener();
+      };
+      window.addEventListener("storage", onStorage);
+      return () => {
+        listeners.delete(listener);
+        window.removeEventListener("storage", onStorage);
+      };
+    },
   };
-  window.addEventListener("storage", onStorage);
-  return () => {
-    storeListeners.delete(listener);
-    window.removeEventListener("storage", onStorage);
-  };
 }
+
+const planStore = createStoredValue(STORAGE_KEY);
+/** The settlement level the player already has: "" or "0" none, "1".."3". */
+const ownedStore = createStoredValue(OWNED_KEY);
+const serverEmpty = () => "";
 
 function fill(template: string, n: number | string): string {
   return template.replace("{n}", String(n));
@@ -91,11 +99,16 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
   const [focus, setFocus] = useState<FocusRequest | null>(null);
 
   // The plan lives in localStorage (this browser only); the server render and the first paint see an empty plan.
-  const stored = useSyncExternalStore(subscribeStored, readStored, () => "");
+  const stored = useSyncExternalStore(planStore.subscribe, planStore.read, serverEmpty);
   const picked = useMemo(() => decodePicked(graph, stored), [graph, stored]);
-  const setPicked = (update: (p: ReadonlySet<string>) => Set<string>) => writeStored(encodePicked(update(picked)));
+  const setPicked = (update: (p: ReadonlySet<string>) => Set<string>) => planStore.write(encodePicked(update(picked)));
 
-  const plan = useMemo(() => computePlan(graph, picked), [graph, picked]);
+  // The settlement the player already has: its plots are not counted again.
+  const ownedRaw = useSyncExternalStore(ownedStore.subscribe, ownedStore.read, serverEmpty);
+  const owned = Math.min(Math.max(Number.parseInt(ownedRaw, 10) || 0, 0), PLOT_PATH.length);
+  const setOwned = (l: number) => ownedStore.write(String(l));
+
+  const plan = useMemo(() => computePlan(graph, picked, PLOT_PATH, owned), [graph, picked, owned]);
   const inPlan = useMemo(() => new Set(plan.order), [plan]);
 
   const related = useMemo(() => {
@@ -247,6 +260,8 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
           onShow={pinAndShow}
           onRemove={(id) => setPicked((p) => removePick(graph, p, id))}
           onReset={() => setPicked(() => new Set())}
+          owned={owned}
+          onOwned={setOwned}
         />
 
       </aside>
@@ -351,13 +366,16 @@ interface PlanPanelProps {
   t: Dict["shipments"];
   locale: string;
   plan: ReturnType<typeof computePlan>;
+  /** The settlement level the player already has (0 = none). */
+  owned: number;
+  onOwned: (level: number) => void;
   byId: Map<string, TreeNode>;
   onShow: (id: string) => void;
   onRemove: (id: string) => void;
   onReset: () => void;
 }
 
-function PlanPanel({ t, locale, plan, byId, onShow, onRemove, onReset }: PlanPanelProps) {
+function PlanPanel({ t, locale, plan, byId, onShow, onRemove, onReset, owned, onOwned }: PlanPanelProps) {
   const empty = plan.order.length === 0;
   return (
     <Panel
@@ -380,6 +398,16 @@ function PlanPanel({ t, locale, plan, byId, onShow, onRemove, onReset }: PlanPan
         )
       }
     >
+      {/* The settlement the player already has: the plots up to it are not counted again. Shown even for an empty
+          plan, so it can be set first. Exactly one option is always active. */}
+      <div className="mb-3 shrink-0">
+        <div className="mb-1.5 text-[0.7rem] uppercase tracking-wider text-ink-3">{t.ownedLevel}</div>
+        <div className="flex flex-wrap gap-1.5" role="group" aria-label={t.ownedLevel}>
+          {[0, ...PLOT_PATH.map((_, i) => i + 1)].map((l) => (
+            <FilterTab key={l} on={owned === l} label={l === 0 ? t.ownedNone : fill(t.level, l)} onClick={() => onOwned(l)} />
+          ))}
+        </div>
+      </div>
       {empty ? (
         <p className="text-sm text-ink-3">{t.planEmpty}</p>
       ) : (
@@ -496,6 +524,8 @@ function ShipmentCard({ node, graph, byId, t, locale, pinned, status, onAdd, onR
           ×
         </button>
       </div>
+      {/* The item description from the game, right under the heading. Long ones are cut at four lines. */}
+      {node.description && <p className="mt-1.5 line-clamp-4 text-sm text-ink-2">{node.description}</p>}
       <dl className="mt-2 text-sm">
         <div className="flex justify-between gap-3 border-b border-line py-1">
           <dt className="text-ink-3">{t.research}</dt>

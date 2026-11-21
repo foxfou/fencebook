@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { PAGE_CONTAINER, PageHeader } from "@/components/PageHeader";
 import { ShipmentPlanner } from "@/components/ShipmentPlanner";
 import type { TreeBlock, TreeNode } from "@/components/ShipmentTree";
-import { itemName, itemsById } from "@/lib/catalog";
+import { itemDescription, itemName, itemsById } from "@/lib/catalog";
 import { money } from "@/lib/format";
 import { getDict, isLocale } from "@/lib/i18n";
 import { alternates, shareTags } from "@/lib/seo";
@@ -54,6 +54,7 @@ export default async function ShipmentsPage({ params }: { params: Params }) {
     return {
       ...n,
       name: item ? itemName(item, locale) : n.id,
+      description: item ? itemDescription(item, locale) : "",
       hasIcon: Boolean(item?.icon),
       rarity: item?.rarity ?? 0,
       ...layout.positions[n.id],

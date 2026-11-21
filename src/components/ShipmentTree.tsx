@@ -11,6 +11,8 @@ import { Vignette } from "./Vignette";
 /** A shipment ready to draw: the graph data plus the name, rarity and position. */
 export interface TreeNode extends ShipmentNode {
   name: string;
+  /** Item description from the game, in the page language; "" if there is none. */
+  description: string;
   hasIcon: boolean;
   rarity: number;
   /** Top-left corner on the canvas. */

@@ -162,8 +162,15 @@ function maxTier(graph: ShipmentGraph, ids: Iterable<string>): ShipmentTier | nu
  * Computes the plan for the chosen shipments. Unknown ids are ignored.
  * `plotPath` is the chain of land plots by level; if any of them is missing from the tree, tiers are not enforced
  * and plots are not added (the plan is then just the chosen shipments and their prerequisites).
+ * `ownedLevel` is the settlement the player already has (0 = none): the plots up to it are already unlocked and
+ * rented, so they are neither researched nor rented again, and shipments up to that tier are open from the start.
  */
-export function computePlan(graph: ShipmentGraph, chosen: Iterable<string>, plotPath: readonly string[] = PLOT_PATH): Plan {
+export function computePlan(
+  graph: ShipmentGraph,
+  chosen: Iterable<string>,
+  plotPath: readonly string[] = PLOT_PATH,
+  ownedLevel = 0,
+): Plan {
   const pickedSet = new Set<string>();
   for (const id of chosen) if (graph.byId.has(id)) pickedSet.add(id);
 
@@ -175,17 +182,22 @@ export function computePlan(graph: ShipmentGraph, chosen: Iterable<string>, plot
   pickedSet.forEach(addWithPrerequisites);
 
   // Plots up to the highest tier. A plot can pull in more shipments, so repeat until the tier stops growing.
+  // Plots the player already has are skipped.
   const usePlots = plotPath.length > 0 && plotPath.every((id) => graph.byId.has(id));
+  const owned = usePlots ? Math.min(Math.max(Math.floor(ownedLevel), 0), plotPath.length) : 0;
+  const ownedPlots = new Set(plotPath.slice(0, owned));
   const plotLevel = new Map(usePlots ? plotPath.map((id, i) => [id, i + 1]) : []);
   const rentSet = new Set<string>();
   if (usePlots) {
     let tier = maxTier(graph, need) ?? 0;
-    for (let lvl = 0; lvl < Math.min(tier, plotPath.length); lvl++) {
+    for (let lvl = owned; lvl < Math.min(tier, plotPath.length); lvl++) {
       rentSet.add(plotPath[lvl]);
       addWithPrerequisites(plotPath[lvl]);
       tier = Math.max(tier, maxTier(graph, need) ?? 0);
     }
   }
+  // What the player already has is not part of the plan (a plot can still come in as a prerequisite of another one).
+  for (const id of ownedPlots) need.delete(id);
 
   // Unlock order: play it out. At each step take what is unlocked already: first the ordinary shipments
   // (shallow and cheap first), and only when nothing else is open, rent the next plot to raise the level.
@@ -196,8 +208,8 @@ export function computePlan(graph: ShipmentGraph, chosen: Iterable<string>, plot
     return c !== 0 ? c : a.localeCompare(b);
   };
   const order: string[] = [];
-  const done = new Set<string>();
-  let level = usePlots ? 0 : Infinity;
+  const done = new Set<string>(ownedPlots);
+  let level = usePlots ? owned : Infinity;
   const remaining = new Set(need);
   while (remaining.size > 0) {
     const open = [...remaining].filter((id) => {
