@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1,
     alternates: { languages: languages("") },
   }));
+  const shipments = locales.map((l) => ({
+    url: `${siteUrl}/${l}/shipments`,
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+    alternates: { languages: languages("/shipments") },
+  }));
   const pages = items.flatMap((i) =>
     locales.map((l) => ({
       url: `${siteUrl}/${l}/items/${i.id}`,
@@ -29,5 +35,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: { languages: languages(`/items/${i.id}`) },
     })),
   );
-  return [...catalog, ...pages];
+  return [...catalog, ...shipments, ...pages];
 }

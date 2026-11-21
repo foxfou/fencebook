@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Dict } from "@/lib/i18n";
 import { LocaleSwitch } from "./LocaleSwitch";
 import { Logo } from "./Logo";
+import { NavLinks } from "./NavLinks";
 
 export function Header({ locale, t }: { locale: string; t: Dict }) {
   return (
@@ -10,11 +11,7 @@ export function Header({ locale, t }: { locale: string; t: Dict }) {
         <Link href={`/${locale}`} aria-label={`${t.brand} — ${t.brandTag}`}>
           <Logo tag={t.brandTag} />
         </Link>
-        <nav className="ml-4 flex gap-2">
-          <Link href={`/${locale}`} className="skew bg-accent px-4 py-1.5 text-accent-ink">
-            <span className="display text-lg">{t.nav.items}</span>
-          </Link>
-        </nav>
+        <NavLinks locale={locale} t={t.nav} />
         <div className="ml-auto">
           <LocaleSwitch locale={locale} />
         </div>

@@ -26,6 +26,39 @@
   --font-body: var(--nf-body), "Segoe UI", system-ui, sans-serif;
 }
 
+:root {
+  /* Height of the sticky header (py-2.5 + the 2.5rem nav buttons + 1px border); pages that fill the screen subtract it. */
+  --header-h: calc(3.75rem + 1px);
+}
+
+/* Scrollbars: thin and dark, in the site colours, for every scrolling area (page, plan list, panels).
+   Firefox and current Chrome/Edge use the standard properties; Safari uses the ::-webkit-scrollbar rules. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-2) transparent;
+}
+*:hover {
+  scrollbar-color: var(--color-ink-3) transparent;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: var(--color-line-2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-3);
+}
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
 html {
   background: var(--color-bg);
   color-scheme: dark;
@@ -140,4 +173,175 @@ body {
   --cell: 112px;
   width: calc(var(--w, 1) * var(--cell) + (var(--w, 1) - 1) * 4px);
   height: calc(var(--h, 1) * var(--cell) + (var(--h, 1) - 1) * 4px);
+}
+
+/* Shipments tree: a pannable canvas with a block per category and a box per shipment. */
+/* A soft vignette: an even tone with the edges a little darker. It is an inset shadow, so it follows the
+   rectangle of the window and has no visible shape; no colour, just a sense of depth.
+   The shadow lives in its own composited layer (::before, translateZ). On the window itself the big blur was
+   repainted in tiles while the tree was dragged, and the tile seams showed up as stripes. ::before comes before
+   the tree in the DOM, so the tree is drawn on top of it. */
+/* The vignette is painted by the Vignette component (a dithered canvas, see there why not CSS);
+   this colour is what shows before it is drawn. */
+.shipment-viewport {
+  background-color: var(--color-surface);
+}
+/* The tree is drawn over the vignette canvas. */
+.snode-layer {
+  z-index: 1;
+}
+.shipment-viewport:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+.sblock {
+  position: absolute;
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--color-surface) 65%, transparent);
+}
+.sblock h2 {
+  position: absolute;
+  left: 20px;
+  top: 8px;
+  font-size: 1.4rem;
+  color: var(--color-ink-3);
+}
+.snode {
+  --r: var(--color-r0);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.12s ease;
+}
+.snode:focus-visible {
+  outline: none;
+}
+.snode-tile {
+  position: relative;
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, var(--r) 45%, transparent);
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--r) 40%, #0d0c0b) 0%,
+    color-mix(in srgb, var(--r) 12%, #0d0c0b) 100%
+  );
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.snode:hover .snode-tile,
+.snode:focus-visible .snode-tile,
+.snode[aria-pressed="true"] .snode-tile {
+  border-color: var(--r);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--r) 35%, transparent);
+}
+.snode[aria-pressed="true"] .snode-tile {
+  box-shadow: 0 0 0 3px var(--color-accent);
+}
+.snode-tile img {
+  position: absolute;
+  inset: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  object-fit: contain;
+  pointer-events: none;
+}
+.snode-tier {
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 0.72rem;
+  text-shadow: 0 1px 2px #000;
+}
+/* flex: none, so a long name is never squeezed by the fixed box height. The name is the last line of the box
+   (the price is above it), so a one-line name leaves no gap. */
+.snode-name {
+  display: -webkit-box;
+  flex: none;
+  width: 100%;
+  overflow: hidden;
+  font-size: 0.72rem;
+  line-height: 0.9rem;
+  color: var(--color-ink-2);
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.snode-cost {
+  flex: none;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  color: var(--color-accent);
+}
+/* In the plan: chosen by the player, or only a prerequisite of what was chosen. */
+.snode[data-plan="picked"] .snode-tile {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-accent) 45%, transparent);
+}
+.snode[data-plan="required"] .snode-tile {
+  border: 1px dashed var(--color-accent);
+}
+/* Jail term the shipment needs, like "#60", in the bottom-right corner of the tile. */
+.snode-jail {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  padding: 0 3px;
+  border-radius: 2px;
+  background: rgb(0 0 0 / 0.7);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  font-size: 0.68rem;
+  line-height: 0.95rem;
+}
+.snode-check {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font-size: 0.7rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.snode[data-dim="true"] {
+  opacity: 0.25;
+}
+.zoom-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--color-line-2);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
+  color: var(--color-ink);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.zoom-btn:hover,
+.zoom-btn:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }

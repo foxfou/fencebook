@@ -6,6 +6,7 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint",
+    "test": "vitest run",
     "preview": "next build && wrangler dev",
     "deploy": "next build && wrangler deploy"
   },
@@ -23,6 +24,7 @@
     "eslint-config-next": "16.4.6",
     "tailwindcss": "4.3.3",
     "typescript": "^5",
+    "vitest": "^4.1.12",
     "wrangler": "^4.166.0"
   }
 }

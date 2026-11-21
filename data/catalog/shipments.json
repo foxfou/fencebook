@@ -1,0 +1,2036 @@
+{
+ "categories": [
+  {
+   "id": "documents"
+  },
+  {
+   "id": "vehicles"
+  },
+  {
+   "id": "construction"
+  },
+  {
+   "id": "weapons"
+  },
+  {
+   "id": "furnishings"
+  },
+  {
+   "id": "gear"
+  },
+  {
+   "id": "production"
+  },
+  {
+   "id": "gadgets"
+  }
+ ],
+ "nodes": [
+  {
+   "buy": 300000,
+   "category": "production",
+   "cost": 150000,
+   "id": "CargoProductionWorkbenchUpgradeConverter1",
+   "item": "cargo_production_workbench_upgrade_converter_1",
+   "jail": 0,
+   "requires": [
+    "cargo_production_workbench_upgrade_thermometer_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 15000,
+   "category": "gadgets",
+   "cost": 5000,
+   "id": "action_camera_1_cumulative",
+   "item": "action_camera_1_cumulative",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 30000,
+   "category": "gadgets",
+   "cost": 35000,
+   "id": "action_camera_2_cumulative",
+   "item": "action_camera_2_cumulative",
+   "jail": 0,
+   "requires": [
+    "action_camera_1_cumulative"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 50000,
+   "category": "gadgets",
+   "cost": 80000,
+   "id": "action_camera_3_cumulative",
+   "item": "action_camera_3_cumulative",
+   "jail": 0,
+   "requires": [
+    "action_camera_2_cumulative"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 500,
+   "category": "gear",
+   "cost": 5000,
+   "id": "afak_1",
+   "item": "afak_1",
+   "jail": 5,
+   "requires": [
+    "painkiller_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 115000,
+   "category": "weapons",
+   "cost": 400000,
+   "id": "apscalar_m1",
+   "item": "apscalar_m1",
+   "jail": 0,
+   "requires": [
+    "jp7_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 115000,
+   "category": "weapons",
+   "cost": 800000,
+   "id": "apscalar_m2",
+   "item": "apscalar_m2",
+   "jail": 0,
+   "requires": [
+    "apscalar_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 115000,
+   "category": "weapons",
+   "cost": 1600000,
+   "id": "apscalar_m3",
+   "item": "apscalar_m3",
+   "jail": 0,
+   "requires": [
+    "apscalar_m2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 1000,
+   "category": "gear",
+   "cost": 5000,
+   "id": "armor_plate_1",
+   "item": "armor_plate_1",
+   "jail": 0,
+   "requires": [
+    "vest1_m1"
+   ],
+   "tier": null
+  },
+  {
+   "buy": 5000,
+   "category": "gear",
+   "cost": 100000,
+   "id": "armor_plate_2",
+   "item": "armor_plate_2",
+   "jail": 225,
+   "requires": [
+    "armor_plate_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 5000,
+   "category": "gear",
+   "cost": 5000,
+   "id": "backpack_2",
+   "item": "backpack_2",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 15000,
+   "category": "gear",
+   "cost": 35000,
+   "id": "backpack_3",
+   "item": "backpack_3",
+   "jail": 0,
+   "requires": [
+    "backpack_2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 40000,
+   "category": "gear",
+   "cost": 150000,
+   "id": "backpack_4",
+   "item": "backpack_4",
+   "jail": 0,
+   "requires": [
+    "backpack_3"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 250,
+   "category": "gear",
+   "cost": 5000,
+   "id": "belt_1",
+   "item": "belt_1",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 1200,
+   "category": "gear",
+   "cost": 10000,
+   "id": "belt_2",
+   "item": "belt_2",
+   "jail": 0,
+   "requires": [
+    "belt_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 2700,
+   "category": "gear",
+   "cost": 25000,
+   "id": "belt_3",
+   "item": "belt_3",
+   "jail": 0,
+   "requires": [
+    "belt_2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 12000,
+   "category": "gear",
+   "cost": 50000,
+   "id": "belt_4",
+   "item": "belt_4",
+   "jail": 0,
+   "requires": [
+    "belt_3"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 10000000,
+   "category": "vehicles",
+   "cost": 2000000,
+   "id": "buletti_soltempra",
+   "item": "buletti_soltempra",
+   "jail": 0,
+   "requires": [
+    "longhorn_wild"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 86500,
+   "category": "vehicles",
+   "cost": 150000,
+   "id": "car_cargo_1",
+   "item": "car_cargo_1",
+   "jail": 0,
+   "requires": [
+    "longhorn_titan"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 350000,
+   "category": "vehicles",
+   "cost": 250000,
+   "id": "car_cargo_2",
+   "item": "car_cargo_2",
+   "jail": 0,
+   "requires": [
+    "car_cargo_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 14000,
+   "category": "vehicles",
+   "cost": 30000,
+   "id": "car_ecu_1",
+   "item": "car_ecu_1",
+   "jail": 0,
+   "requires": [
+    "fukurou_tensa"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 75000,
+   "category": "vehicles",
+   "cost": 160000,
+   "id": "car_ecu_2",
+   "item": "car_ecu_2",
+   "jail": 0,
+   "requires": [
+    "car_ecu_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 330000,
+   "category": "vehicles",
+   "cost": 260000,
+   "id": "car_ecu_3",
+   "item": "car_ecu_3",
+   "jail": 0,
+   "requires": [
+    "car_ecu_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 72000,
+   "category": "vehicles",
+   "cost": 120000,
+   "id": "car_engine_cooling_1",
+   "item": "car_engine_cooling_1",
+   "jail": 0,
+   "requires": [
+    "fukurou_tensa"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 270000,
+   "category": "vehicles",
+   "cost": 200000,
+   "id": "car_engine_cooling_2",
+   "item": "car_engine_cooling_2",
+   "jail": 0,
+   "requires": [
+    "car_engine_cooling_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 25000,
+   "category": "construction",
+   "cost": 10000,
+   "id": "car_garage_1",
+   "item": "car_garage_1",
+   "jail": 0,
+   "requires": [
+    "car_lift_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 70000,
+   "category": "construction",
+   "cost": 40000,
+   "id": "car_garage_2",
+   "item": "car_garage_2",
+   "jail": 0,
+   "requires": [
+    "car_garage_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 1200,
+   "category": "vehicles",
+   "cost": 20000,
+   "id": "car_inventory_1",
+   "item": "car_inventory_1",
+   "jail": 0,
+   "requires": [
+    "longhorn_van"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 70500,
+   "category": "vehicles",
+   "cost": 130000,
+   "id": "car_inventory_2",
+   "item": "car_inventory_2",
+   "jail": 0,
+   "requires": [
+    "car_inventory_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 270000,
+   "category": "vehicles",
+   "cost": 220000,
+   "id": "car_inventory_3",
+   "item": "car_inventory_3",
+   "jail": 0,
+   "requires": [
+    "car_inventory_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 10000,
+   "category": "construction",
+   "cost": 5000,
+   "id": "car_lift_1",
+   "item": "car_lift_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 300000,
+   "category": "vehicles",
+   "cost": 200000,
+   "id": "car_police_radio_1",
+   "item": "car_police_radio_1",
+   "jail": 275,
+   "requires": [
+    "longhorn_titan"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 68000,
+   "category": "vehicles",
+   "cost": 100000,
+   "id": "car_steering_rack_1",
+   "item": "car_steering_rack_1",
+   "jail": 0,
+   "requires": [
+    "fukurou_tensa"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 270000,
+   "category": "vehicles",
+   "cost": 220000,
+   "id": "car_steering_rack_2",
+   "item": "car_steering_rack_2",
+   "jail": 0,
+   "requires": [
+    "car_steering_rack_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 61500,
+   "category": "vehicles",
+   "cost": 100000,
+   "id": "car_suspension_2",
+   "item": "car_suspension_2",
+   "jail": 75,
+   "requires": [
+    "car_steering_rack_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 79500,
+   "category": "vehicles",
+   "cost": 110000,
+   "id": "car_turbocharger_1",
+   "item": "car_turbocharger_1",
+   "jail": 0,
+   "requires": [
+    "royal_e"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 238000,
+   "category": "vehicles",
+   "cost": 210000,
+   "id": "car_turbocharger_2",
+   "item": "car_turbocharger_2",
+   "jail": 0,
+   "requires": [
+    "car_turbocharger_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 40000,
+   "category": "production",
+   "cost": 30000,
+   "id": "cargo_charge_workbench_garden_bed",
+   "item": "cargo_charge_workbench_garden_bed",
+   "jail": 0,
+   "requires": [
+    "narco_farm_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 20000,
+   "category": "production",
+   "cost": 15000,
+   "id": "cargo_charge_workbench_lab_freezer_1",
+   "item": "cargo_charge_workbench_lab_freezer_1",
+   "jail": 0,
+   "requires": [
+    "cargo_production_workbench_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 90000,
+   "category": "production",
+   "cost": 30000,
+   "id": "cargo_charge_workbench_lab_freezer_2",
+   "item": "cargo_charge_workbench_lab_freezer_2",
+   "jail": 0,
+   "requires": [
+    "cargo_charge_workbench_lab_freezer_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 250000,
+   "category": "production",
+   "cost": 100000,
+   "id": "cargo_charge_workbench_lab_freezer_3",
+   "item": "cargo_charge_workbench_lab_freezer_3",
+   "jail": 0,
+   "requires": [
+    "cargo_charge_workbench_lab_freezer_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 100000,
+   "category": "production",
+   "cost": 40000,
+   "id": "cargo_charge_workbench_upgrade_evaporator_1",
+   "item": "cargo_charge_workbench_upgrade_evaporator_1",
+   "jail": 0,
+   "requires": [
+    "cargo_charge_workbench_lab_freezer_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 250000,
+   "category": "production",
+   "cost": 100000,
+   "id": "cargo_charge_workbench_upgrade_refrigerant_1",
+   "item": "cargo_charge_workbench_upgrade_refrigerant_1",
+   "jail": 0,
+   "requires": [
+    "cargo_charge_workbench_upgrade_evaporator_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 20000,
+   "category": "furnishings",
+   "cost": 20000,
+   "id": "cargo_exchange_workbench_1",
+   "item": "cargo_exchange_workbench_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 400000,
+   "category": "furnishings",
+   "cost": 300000,
+   "id": "cargo_exchange_workbench_additional_double_slot_upgrade",
+   "item": "cargo_exchange_workbench_additional_double_slot_upgrade",
+   "jail": 0,
+   "requires": [
+    "cargo_exchange_workbench_additional_slot_upgrade"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 200000,
+   "category": "furnishings",
+   "cost": 150000,
+   "id": "cargo_exchange_workbench_additional_slot_upgrade",
+   "item": "cargo_exchange_workbench_additional_slot_upgrade",
+   "jail": 0,
+   "requires": [
+    "cargo_exchange_workbench_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 30000,
+   "category": "furnishings",
+   "cost": 15000,
+   "id": "cargo_exchange_workbench_speedup_upgrade_1",
+   "item": "cargo_exchange_workbench_speedup_upgrade_1",
+   "jail": 0,
+   "requires": [
+    "cargo_exchange_workbench_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 150000,
+   "category": "furnishings",
+   "cost": 75000,
+   "id": "cargo_exchange_workbench_speedup_upgrade_2",
+   "item": "cargo_exchange_workbench_speedup_upgrade_2",
+   "jail": 0,
+   "requires": [
+    "cargo_exchange_workbench_speedup_upgrade_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 30000,
+   "category": "gadgets",
+   "cost": 50000,
+   "id": "cargo_manifest_2_cumulative",
+   "item": "cargo_manifest_2_cumulative",
+   "jail": 410,
+   "requires": [
+    "action_camera_1_cumulative"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 15000,
+   "category": "production",
+   "cost": 15000,
+   "id": "cargo_open_workbench_upgrade_additional_slot_2",
+   "item": "cargo_open_workbench_upgrade_additional_slot_2",
+   "jail": 335,
+   "requires": [
+    "cargo_workbench_lab_table_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 40000,
+   "category": "production",
+   "cost": 20000,
+   "id": "cargo_production_workbench_1",
+   "item": "cargo_production_workbench_1",
+   "jail": 0,
+   "requires": [
+    "meth_lab_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 300000,
+   "category": "production",
+   "cost": 150000,
+   "id": "cargo_production_workbench_2",
+   "item": "cargo_production_workbench_2",
+   "jail": 0,
+   "requires": [
+    "cargo_production_workbench_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 700000,
+   "category": "production",
+   "cost": 350000,
+   "id": "cargo_production_workbench_3",
+   "item": "cargo_production_workbench_3",
+   "jail": 0,
+   "requires": [
+    "cargo_production_workbench_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 20000,
+   "category": "production",
+   "cost": 10000,
+   "id": "cargo_production_workbench_upgrade_engine_1",
+   "item": "cargo_production_workbench_upgrade_engine_1",
+   "jail": 0,
+   "requires": [
+    "cargo_production_workbench_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 120000,
+   "category": "production",
+   "cost": 50000,
+   "id": "cargo_production_workbench_upgrade_thermometer_1",
+   "item": "cargo_production_workbench_upgrade_thermometer_1",
+   "jail": 0,
+   "requires": [
+    "cargo_production_workbench_upgrade_engine_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 15000,
+   "category": "furnishings",
+   "cost": 5000,
+   "id": "cargo_workbench_1",
+   "item": "cargo_workbench_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 41000,
+   "category": "furnishings",
+   "cost": 45000,
+   "id": "cargo_workbench_circular_saw_1",
+   "item": "cargo_workbench_circular_saw_1",
+   "jail": 0,
+   "requires": [
+    "cargo_workbench_toolbox_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 15000,
+   "category": "production",
+   "cost": 10000,
+   "id": "cargo_workbench_lab_table_1",
+   "item": "cargo_workbench_lab_table_1",
+   "jail": 0,
+   "requires": [
+    "meth_lab_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 250000,
+   "category": "furnishings",
+   "cost": 100000,
+   "id": "cargo_workbench_slot_1",
+   "item": "cargo_workbench_slot_1",
+   "jail": 0,
+   "requires": [
+    "cargo_workbench_circular_saw_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 15000,
+   "category": "furnishings",
+   "cost": 20000,
+   "id": "cargo_workbench_toolbox_1",
+   "item": "cargo_workbench_toolbox_1",
+   "jail": 0,
+   "requires": [
+    "cargo_workbench_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 3780,
+   "category": "weapons",
+   "cost": 15000,
+   "id": "cb45_m1",
+   "item": "cb45_m1",
+   "jail": 15,
+   "requires": [
+    "mc10_m1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 3780,
+   "category": "weapons",
+   "cost": 30000,
+   "id": "cb45_m2",
+   "item": "cb45_m2",
+   "jail": 25,
+   "requires": [
+    "cb45_m1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 3780,
+   "category": "weapons",
+   "cost": 60000,
+   "id": "cb45_m3",
+   "item": "cb45_m3",
+   "jail": 35,
+   "requires": [
+    "cb45_m2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 200000,
+   "category": "construction",
+   "cost": 50000,
+   "id": "clan_alarm_1",
+   "item": "clan_alarm_1",
+   "jail": 0,
+   "requires": [
+    "personal_alarm_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 15000,
+   "category": "furnishings",
+   "cost": 5000,
+   "id": "collection_table",
+   "item": "collection_table",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 34000,
+   "category": "furnishings",
+   "cost": 25000,
+   "id": "collection_upgrade_1",
+   "item": "collection_upgrade_1",
+   "jail": 0,
+   "requires": [
+    "collection_table"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 100000,
+   "category": "furnishings",
+   "cost": 50000,
+   "id": "collection_upgrade_2",
+   "item": "collection_upgrade_2",
+   "jail": 0,
+   "requires": [
+    "collection_upgrade_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 250000,
+   "category": "furnishings",
+   "cost": 100000,
+   "id": "collection_upgrade_3",
+   "item": "collection_upgrade_3",
+   "jail": 0,
+   "requires": [
+    "collection_upgrade_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 20000,
+   "category": "construction",
+   "cost": 10000,
+   "id": "defense_module_1",
+   "item": "defense_module_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 100000,
+   "category": "construction",
+   "cost": 150000,
+   "id": "defense_module_2",
+   "item": "defense_module_2",
+   "jail": 0,
+   "requires": [
+    "defense_module_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 250000,
+   "category": "construction",
+   "cost": 500000,
+   "id": "defense_module_3",
+   "item": "defense_module_3",
+   "jail": 0,
+   "requires": [
+    "defense_module_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 100000,
+   "category": "gadgets",
+   "cost": 100000,
+   "id": "deposit_box_1_cumulative",
+   "item": "deposit_box_1_cumulative",
+   "jail": 0,
+   "requires": [
+    "usb_1_cumulative"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 300,
+   "category": "weapons",
+   "cost": 0,
+   "id": "dp9_m1",
+   "item": "dp9_m1",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 300,
+   "category": "weapons",
+   "cost": 25000,
+   "id": "dp9_m2",
+   "item": "dp9_m2",
+   "jail": 0,
+   "requires": [
+    "dp9_m1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 103500,
+   "category": "weapons",
+   "cost": 200000,
+   "id": "drm14_m1",
+   "item": "drm14_m1",
+   "jail": 950,
+   "requires": [
+    "rc556_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 103500,
+   "category": "weapons",
+   "cost": 400000,
+   "id": "drm14_m2",
+   "item": "drm14_m2",
+   "jail": 975,
+   "requires": [
+    "drm14_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 103500,
+   "category": "weapons",
+   "cost": 800000,
+   "id": "drm14_m3",
+   "item": "drm14_m3",
+   "jail": 1000,
+   "requires": [
+    "drm14_m2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 25000,
+   "category": "production",
+   "cost": 100000,
+   "id": "fan_1",
+   "item": "fan_1",
+   "jail": 0,
+   "requires": [
+    "cargo_charge_workbench_garden_bed"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 15000,
+   "category": "furnishings",
+   "cost": 5000,
+   "id": "first_aid_cabinet_1",
+   "item": "first_aid_cabinet_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 4000,
+   "category": "gear",
+   "cost": 25000,
+   "id": "flash_grenade_1",
+   "item": "flash_grenade_1",
+   "jail": 0,
+   "requires": [
+    "belt_2"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 14960,
+   "category": "gear",
+   "cost": 75000,
+   "id": "frag_grenade_1",
+   "item": "frag_grenade_1",
+   "jail": 0,
+   "requires": [
+    "smoke_grenade_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 200000,
+   "category": "vehicles",
+   "cost": 50000,
+   "id": "fukurou_tensa",
+   "item": "fukurou_tensa",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 3500,
+   "category": "weapons",
+   "cost": 15000,
+   "id": "harris500_m1",
+   "item": "harris500_m1",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 3500,
+   "category": "weapons",
+   "cost": 30000,
+   "id": "harris500_m2",
+   "item": "harris500_m2",
+   "jail": 0,
+   "requires": [
+    "harris500_m1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 3500,
+   "category": "weapons",
+   "cost": 60000,
+   "id": "harris500_m3",
+   "item": "harris500_m3",
+   "jail": 0,
+   "requires": [
+    "harris500_m2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 500000,
+   "category": "construction",
+   "cost": 200000,
+   "id": "helicopter_garage_1",
+   "item": "helicopter_garage_1",
+   "jail": 0,
+   "requires": [
+    "car_garage_2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 10000,
+   "category": "construction",
+   "cost": 0,
+   "id": "home_1",
+   "item": "home_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 600000,
+   "category": "construction",
+   "cost": 200000,
+   "id": "home_2",
+   "item": "home_2",
+   "jail": 0,
+   "requires": [
+    "home_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 2000,
+   "category": "gear",
+   "cost": 25000,
+   "id": "injector_1",
+   "item": "injector_1",
+   "jail": 0,
+   "requires": [
+    "painkiller_2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 6000,
+   "category": "gear",
+   "cost": 50000,
+   "id": "injector_2",
+   "item": "injector_2",
+   "jail": 0,
+   "requires": [
+    "injector_1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 29000,
+   "category": "weapons",
+   "cost": 160000,
+   "id": "jp7_m1",
+   "item": "jp7_m1",
+   "jail": 0,
+   "requires": [
+    "mc10_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 29000,
+   "category": "weapons",
+   "cost": 320000,
+   "id": "jp7_m2",
+   "item": "jp7_m2",
+   "jail": 0,
+   "requires": [
+    "jp7_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 29000,
+   "category": "weapons",
+   "cost": 640000,
+   "id": "jp7_m3",
+   "item": "jp7_m3",
+   "jail": 0,
+   "requires": [
+    "jp7_m2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 6000,
+   "category": "weapons",
+   "cost": 25000,
+   "id": "kl545_m1",
+   "item": "kl545_m1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 6000,
+   "category": "weapons",
+   "cost": 50000,
+   "id": "kl545_m2",
+   "item": "kl545_m2",
+   "jail": 0,
+   "requires": [
+    "kl545_m1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 6000,
+   "category": "weapons",
+   "cost": 100000,
+   "id": "kl545_m3",
+   "item": "kl545_m3",
+   "jail": 0,
+   "requires": [
+    "kl545_m2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 20000,
+   "category": "weapons",
+   "cost": 100000,
+   "id": "lbr44_m1",
+   "item": "lbr44_m1",
+   "jail": 0,
+   "requires": [
+    "dp9_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 20000,
+   "category": "weapons",
+   "cost": 200000,
+   "id": "lbr44_m2",
+   "item": "lbr44_m2",
+   "jail": 0,
+   "requires": [
+    "lbr44_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 30000,
+   "category": "construction",
+   "cost": 15000,
+   "id": "location_alarm_1",
+   "item": "location_alarm_1",
+   "jail": 105,
+   "requires": [
+    "defense_module_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 99,
+   "category": "gadgets",
+   "cost": 5000,
+   "id": "lockpick_1",
+   "item": "lockpick_1",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 900000,
+   "category": "vehicles",
+   "cost": 200000,
+   "id": "longhorn_titan",
+   "item": "longhorn_titan",
+   "jail": 0,
+   "requires": [
+    "longhorn_van"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 180000,
+   "category": "vehicles",
+   "cost": 50000,
+   "id": "longhorn_van",
+   "item": "longhorn_van",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 4500000,
+   "category": "vehicles",
+   "cost": 500000,
+   "id": "longhorn_wild",
+   "item": "longhorn_wild",
+   "jail": 0,
+   "requires": [
+    "royal_e"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 3500,
+   "category": "weapons",
+   "cost": 15000,
+   "id": "mc10_m1",
+   "item": "mc10_m1",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 3500,
+   "category": "weapons",
+   "cost": 30000,
+   "id": "mc10_m2",
+   "item": "mc10_m2",
+   "jail": 0,
+   "requires": [
+    "mc10_m1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 3500,
+   "category": "weapons",
+   "cost": 60000,
+   "id": "mc10_m3",
+   "item": "mc10_m3",
+   "jail": 0,
+   "requires": [
+    "mc10_m2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 110000,
+   "category": "production",
+   "cost": 160000,
+   "id": "meth_lab_1",
+   "item": "meth_lab_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 18000,
+   "category": "gadgets",
+   "cost": 100000,
+   "id": "mini_drill_1",
+   "item": "mini_drill_1",
+   "jail": 0,
+   "requires": [
+    "lockpick_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 30000,
+   "category": "furnishings",
+   "cost": 10000,
+   "id": "money_workbench_speedup_1",
+   "item": "money_workbench_speedup_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 65000,
+   "category": "furnishings",
+   "cost": 50000,
+   "id": "money_workbench_speedup_2",
+   "item": "money_workbench_speedup_2",
+   "jail": 0,
+   "requires": [
+    "money_workbench_speedup_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 150000,
+   "category": "furnishings",
+   "cost": 150000,
+   "id": "money_workbench_speedup_3",
+   "item": "money_workbench_speedup_3",
+   "jail": 0,
+   "requires": [
+    "money_workbench_speedup_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 100000,
+   "category": "production",
+   "cost": 150000,
+   "id": "narco_farm_1",
+   "item": "narco_farm_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 28000,
+   "category": "weapons",
+   "cost": 160000,
+   "id": "ordr12_m1",
+   "item": "ordr12_m1",
+   "jail": 0,
+   "requires": [
+    "harris500_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 28000,
+   "category": "weapons",
+   "cost": 320000,
+   "id": "ordr12_m2",
+   "item": "ordr12_m2",
+   "jail": 0,
+   "requires": [
+    "ordr12_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 28000,
+   "category": "weapons",
+   "cost": 640000,
+   "id": "ordr12_m3",
+   "item": "ordr12_m3",
+   "jail": 0,
+   "requires": [
+    "ordr12_m2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 500,
+   "category": "gear",
+   "cost": 10000,
+   "id": "painkiller_1",
+   "item": "painkiller_1",
+   "jail": 0,
+   "requires": [
+    "belt_1"
+   ],
+   "tier": null
+  },
+  {
+   "buy": 1600,
+   "category": "gear",
+   "cost": 20000,
+   "id": "painkiller_2",
+   "item": "painkiller_2",
+   "jail": 0,
+   "requires": [
+    "painkiller_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 60000,
+   "category": "construction",
+   "cost": 25000,
+   "id": "personal_alarm_1",
+   "item": "personal_alarm_1",
+   "jail": 0,
+   "requires": [
+    "defense_module_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 100000,
+   "category": "documents",
+   "cost": 50000,
+   "id": "plot_sale_1",
+   "item": "plot_sale_1",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 800000,
+   "category": "documents",
+   "cost": 200000,
+   "id": "plot_sale_2",
+   "item": "plot_sale_2",
+   "jail": 0,
+   "requires": [
+    "plot_sale_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 2000000,
+   "category": "documents",
+   "cost": 1000000,
+   "id": "plot_sale_3",
+   "item": "plot_sale_3",
+   "jail": 0,
+   "requires": [
+    "plot_sale_2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 8000,
+   "category": "documents",
+   "cost": 30000,
+   "id": "police_badge_1",
+   "item": "police_badge_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 40000,
+   "category": "documents",
+   "cost": 200000,
+   "id": "police_badge_2",
+   "item": "police_badge_2",
+   "jail": 0,
+   "requires": [
+    "police_badge_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 100000,
+   "category": "documents",
+   "cost": 500000,
+   "id": "police_badge_3",
+   "item": "police_badge_3",
+   "jail": 0,
+   "requires": [
+    "police_badge_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 10000,
+   "category": "gadgets",
+   "cost": 25000,
+   "id": "police_radio_1",
+   "item": "police_radio_1",
+   "jail": 60,
+   "requires": [],
+   "tier": 2
+  },
+  {
+   "buy": 32000,
+   "category": "weapons",
+   "cost": 200000,
+   "id": "rc556_m1",
+   "item": "rc556_m1",
+   "jail": 0,
+   "requires": [
+    "kl545_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 32000,
+   "category": "weapons",
+   "cost": 400000,
+   "id": "rc556_m2",
+   "item": "rc556_m2",
+   "jail": 0,
+   "requires": [
+    "rc556_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 32000,
+   "category": "weapons",
+   "cost": 800000,
+   "id": "rc556_m3",
+   "item": "rc556_m3",
+   "jail": 0,
+   "requires": [
+    "rc556_m2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 10000000,
+   "category": "vehicles",
+   "cost": 2000000,
+   "id": "romanov_r8",
+   "item": "romanov_r8",
+   "jail": 0,
+   "requires": [],
+   "tier": 3
+  },
+  {
+   "buy": 1000000,
+   "category": "vehicles",
+   "cost": 200000,
+   "id": "royal_e",
+   "item": "royal_e",
+   "jail": 0,
+   "requires": [
+    "fukurou_tensa"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 4000000,
+   "category": "vehicles",
+   "cost": 500000,
+   "id": "royal_j",
+   "item": "royal_j",
+   "jail": 0,
+   "requires": [
+    "longhorn_titan"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 200000,
+   "category": "documents",
+   "cost": 100000,
+   "id": "settlement_sale_1",
+   "item": "settlement_sale_1",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 2000000,
+   "category": "documents",
+   "cost": 500000,
+   "id": "settlement_sale_2",
+   "item": "settlement_sale_2",
+   "jail": 0,
+   "requires": [
+    "settlement_sale_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 6000000,
+   "category": "documents",
+   "cost": 2000000,
+   "id": "settlement_sale_3",
+   "item": "settlement_sale_3",
+   "jail": 0,
+   "requires": [
+    "settlement_sale_2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 3500,
+   "category": "furnishings",
+   "cost": 12000,
+   "id": "shelving_1",
+   "item": "shelving_1",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 26500,
+   "category": "furnishings",
+   "cost": 25000,
+   "id": "shelving_2",
+   "item": "shelving_2",
+   "jail": 0,
+   "requires": [
+    "shelving_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 46500,
+   "category": "furnishings",
+   "cost": 45000,
+   "id": "shelving_3",
+   "item": "shelving_3",
+   "jail": 0,
+   "requires": [
+    "shelving_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 30300,
+   "category": "furnishings",
+   "cost": 40000,
+   "id": "shelving_4",
+   "item": "shelving_4",
+   "jail": 30,
+   "requires": [
+    "shelving_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 70000,
+   "category": "furnishings",
+   "cost": 90000,
+   "id": "shelving_5",
+   "item": "shelving_5",
+   "jail": 140,
+   "requires": [
+    "shelving_4"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 132000,
+   "category": "furnishings",
+   "cost": 130000,
+   "id": "shelving_6",
+   "item": "shelving_6",
+   "jail": 500,
+   "requires": [
+    "shelving_5"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 5040,
+   "category": "gear",
+   "cost": 50000,
+   "id": "smoke_grenade_1",
+   "item": "smoke_grenade_1",
+   "jail": 0,
+   "requires": [
+    "flash_grenade_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 120000,
+   "category": "weapons",
+   "cost": 400000,
+   "id": "srreaper_m1",
+   "item": "srreaper_m1",
+   "jail": 0,
+   "requires": [
+    "rc556_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 120000,
+   "category": "weapons",
+   "cost": 800000,
+   "id": "srreaper_m2",
+   "item": "srreaper_m2",
+   "jail": 0,
+   "requires": [
+    "srreaper_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 120000,
+   "category": "weapons",
+   "cost": 1600000,
+   "id": "srreaper_m3",
+   "item": "srreaper_m3",
+   "jail": 0,
+   "requires": [
+    "srreaper_m2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 27500,
+   "category": "weapons",
+   "cost": 100000,
+   "id": "starh_m1",
+   "item": "starh_m1",
+   "jail": 180,
+   "requires": [
+    "kl545_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 27500,
+   "category": "weapons",
+   "cost": 200000,
+   "id": "starh_m2",
+   "item": "starh_m2",
+   "jail": 190,
+   "requires": [
+    "starh_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 27500,
+   "category": "weapons",
+   "cost": 400000,
+   "id": "starh_m3",
+   "item": "starh_m3",
+   "jail": 200,
+   "requires": [
+    "starh_m2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 32000,
+   "category": "furnishings",
+   "cost": 50000,
+   "id": "storage_1",
+   "item": "storage_1",
+   "jail": 0,
+   "requires": [
+    "storage_4"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 68000,
+   "category": "furnishings",
+   "cost": 100000,
+   "id": "storage_2",
+   "item": "storage_2",
+   "jail": 0,
+   "requires": [
+    "storage_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 127000,
+   "category": "furnishings",
+   "cost": 150000,
+   "id": "storage_3",
+   "item": "storage_3",
+   "jail": 0,
+   "requires": [
+    "storage_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 4000,
+   "category": "furnishings",
+   "cost": 15000,
+   "id": "storage_4",
+   "item": "storage_4",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 29200,
+   "category": "furnishings",
+   "cost": 30000,
+   "id": "storage_5",
+   "item": "storage_5",
+   "jail": 0,
+   "requires": [
+    "storage_4"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 45400,
+   "category": "furnishings",
+   "cost": 50000,
+   "id": "storage_6",
+   "item": "storage_6",
+   "jail": 0,
+   "requires": [
+    "storage_5"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 100000,
+   "category": "construction",
+   "cost": 130000,
+   "id": "storage_building_1",
+   "item": "storage_building_1",
+   "jail": 0,
+   "requires": [
+    "workshop_building_1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 55000,
+   "category": "gadgets",
+   "cost": 50000,
+   "id": "storage_lockpick_1",
+   "item": "storage_lockpick_1",
+   "jail": 0,
+   "requires": [
+    "lockpick_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 20000,
+   "category": "gadgets",
+   "cost": 25000,
+   "id": "tablet_1_cumulative",
+   "item": "tablet_1_cumulative",
+   "jail": 0,
+   "requires": [
+    "action_camera_1_cumulative"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 110000,
+   "category": "weapons",
+   "cost": 400000,
+   "id": "tag12k_m1",
+   "item": "tag12k_m1",
+   "jail": 0,
+   "requires": [
+    "ordr12_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 110000,
+   "category": "weapons",
+   "cost": 800000,
+   "id": "tag12k_m2",
+   "item": "tag12k_m2",
+   "jail": 0,
+   "requires": [
+    "tag12k_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 110000,
+   "category": "weapons",
+   "cost": 1600000,
+   "id": "tag12k_m3",
+   "item": "tag12k_m3",
+   "jail": 0,
+   "requires": [
+    "tag12k_m2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 50000,
+   "category": "gadgets",
+   "cost": 50000,
+   "id": "usb_1_cumulative",
+   "item": "usb_1_cumulative",
+   "jail": 0,
+   "requires": [
+    "tablet_1_cumulative"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 250000,
+   "category": "production",
+   "cost": 500000,
+   "id": "uv_lamp_3",
+   "item": "uv_lamp_3",
+   "jail": 0,
+   "requires": [
+    "water_pump_2"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 4000,
+   "category": "gear",
+   "cost": 5000,
+   "id": "vest1_m1",
+   "item": "vest1_m1",
+   "jail": 0,
+   "requires": [],
+   "tier": null
+  },
+  {
+   "buy": 15000,
+   "category": "gear",
+   "cost": 15000,
+   "id": "vest2_m1",
+   "item": "vest2_m1",
+   "jail": 0,
+   "requires": [
+    "vest1_m1"
+   ],
+   "tier": 1
+  },
+  {
+   "buy": 70000,
+   "category": "gear",
+   "cost": 250000,
+   "id": "vest3_m1",
+   "item": "vest3_m1",
+   "jail": 0,
+   "requires": [
+    "vest2_m1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 140000,
+   "category": "gear",
+   "cost": 500000,
+   "id": "vest4_m1",
+   "item": "vest4_m1",
+   "jail": 0,
+   "requires": [
+    "vest3_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 50000,
+   "category": "weapons",
+   "cost": 300000,
+   "id": "vulture50_m1",
+   "item": "vulture50_m1",
+   "jail": 0,
+   "requires": [
+    "lbr44_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 50000,
+   "category": "weapons",
+   "cost": 600000,
+   "id": "vulture50_m2",
+   "item": "vulture50_m2",
+   "jail": 0,
+   "requires": [
+    "vulture50_m1"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 15000,
+   "category": "construction",
+   "cost": 25000,
+   "id": "wall_2",
+   "item": "wall_2",
+   "jail": 0,
+   "requires": [],
+   "tier": 1
+  },
+  {
+   "buy": 50000,
+   "category": "construction",
+   "cost": 100000,
+   "id": "wall_3",
+   "item": "wall_3",
+   "jail": 0,
+   "requires": [
+    "wall_2"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 500000,
+   "category": "construction",
+   "cost": 200000,
+   "id": "wall_4",
+   "item": "wall_4",
+   "jail": 0,
+   "requires": [
+    "wall_3"
+   ],
+   "tier": 3
+  },
+  {
+   "buy": 70000,
+   "category": "production",
+   "cost": 200000,
+   "id": "water_pump_2",
+   "item": "water_pump_2",
+   "jail": 0,
+   "requires": [
+    "fan_1"
+   ],
+   "tier": 2
+  },
+  {
+   "buy": 75000,
+   "category": "construction",
+   "cost": 125000,
+   "id": "workshop_building_1",
+   "item": "workshop_building_1",
+   "jail": 0,
+   "requires": [
+    "car_lift_1"
+   ],
+   "tier": 1
+  }
+ ]
+}
