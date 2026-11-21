@@ -41,6 +41,7 @@ const ru = {
     itemPage: "Страница предмета",
     close: "Закрыть",
     search: "Найти поставку…",
+    clearSearch: "Очистить поиск",
     filters: "Фильтры",
     categoryFilter: "Категория",
     levelFilter: "Доступно в поселении",
@@ -65,7 +66,6 @@ const ru = {
     none: "—",
     rentLabel: "аренда",
     rentTag: "аренда {price}",
-    rentHint: "Для поселения {n} уровня нужно открыть и арендовать участки по очереди: {levels} уровня. Аренда всего: {price}.",
   },
   catalog: {
     title: `Предметы ${GAME}`,
@@ -202,6 +202,7 @@ const en: Dict = {
     itemPage: "Item page",
     close: "Close",
     search: "Find a shipment…",
+    clearSearch: "Clear search",
     filters: "Filters",
     categoryFilter: "Category",
     levelFilter: "Available at settlement",
@@ -226,7 +227,6 @@ const en: Dict = {
     none: "—",
     rentLabel: "rent",
     rentTag: "rent {price}",
-    rentHint: "For a level {n} settlement, unlock and rent land plots in turn: levels {levels}. Rent in total: {price}.",
   },
   catalog: {
     title: `${GAME} items`,

@@ -147,6 +147,16 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
   const visible = (id: string) => placed.has(id);
   const matches = tree.nodes.filter((n) => !faded?.has(n.id)).length;
   const anyFilter = faded !== null || level !== null;
+  // Category and level are folded under the "Filters" button; its badge counts the ones that are on.
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  // Full screen of the tree view; here and not in the tree, because the filter bar moves over the canvas then.
+  const [full, setFull] = useState(false);
+  const activeFilters = (cat !== null ? 1 : 0) + (level !== null ? 1 : 0);
+  const resetFilters = () => {
+    setQuery("");
+    setCat(null);
+    setLevel(null);
+  };
 
   const nodeRect = useCallback(
     (id: string): Rect | null => {
@@ -194,34 +204,97 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
   const activeId = pinned ?? hovered;
   const active = activeId ? byId.get(activeId) : undefined;
 
-  return (
-    <div className="mt-6 grid min-h-0 flex-1 gap-3 lg:grid-cols-[25rem_minmax(0,1fr)] lg:grid-rows-[minmax(0,1fr)]">
-      <aside className="order-2 flex min-h-0 flex-col gap-3 lg:order-1">
-        <Panel
-          title={t.filters}
-          action={
-            anyFilter ? (
-              <TextButton
-                onClick={() => {
-                  setQuery("");
-                  setCat(null);
-                  setLevel(null);
-                }}
-              >
-                {t.resetFilters}
-              </TextButton>
-            ) : null
-          }
-        >
+  // The filter bar. Folded it is one row: search, the "Filters" button (with the number of active filters) and reset;
+  // the categories and levels open under it. It sits above the canvas, and over it in full screen.
+  const filterBar = (
+    <section className="shrink-0 rounded border border-line bg-surface px-2.5 py-2">
+      <div className="flex flex-wrap items-center gap-2">
+        {/* Search field: a magnifier inside on the left (decorative, the field has its own label), the field gets
+            room for it; a clear button on the right while there is text (the browser's own one is hidden, it looks
+            different in every browser). The icon turns lime while the field is focused. Esc clears too. */}
+        <div className="group relative min-w-[12rem] flex-1 sm:max-w-sm">
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            aria-hidden="true"
+            className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-3 group-focus-within:text-accent"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" />
+          </svg>
           <input
             type="search"
             value={query}
             onChange={(e) => onQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Escape" && query) {
+                e.preventDefault();
+                onQuery("");
+              }
+            }}
             placeholder={t.search}
             aria-label={t.search}
-            className="w-full rounded border border-line-2 bg-field px-3 py-1.5 text-sm outline-none placeholder:text-ink-3 focus:border-accent"
+            autoComplete="off"
+            spellCheck={false}
+            className="search-input w-full rounded border border-line-2 bg-field py-1.5 pl-8 pr-8 text-sm outline-none placeholder:text-ink-3 focus:border-accent"
           />
+          {query && (
+            <button
+              type="button"
+              aria-label={t.clearSearch}
+              title={t.clearSearch}
+              onClick={() => onQuery("")}
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded p-1 text-ink-3 hover:text-ink"
+            >
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18" />
+              </svg>
+            </button>
+          )}
+        </div>
 
+        <button
+          type="button"
+          aria-expanded={filtersOpen}
+          aria-controls="shipment-filters"
+          onClick={() => setFiltersOpen((o) => !o)}
+          className={`flex items-center gap-1.5 rounded px-2 py-1.5 text-sm transition-colors hover:bg-surface-2 ${
+            activeFilters > 0 ? "text-accent" : "text-ink-2 hover:text-ink"
+          }`}
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M4 5h16l-6 7.5V19l-4 1v-7.5z" />
+          </svg>
+          <span className="display">{t.filters}</span>
+          {activeFilters > 0 && (
+            <span className="grid h-4 min-w-4 place-items-center rounded-full bg-accent px-1 text-[0.65rem] font-bold text-accent-ink">
+              {activeFilters}
+            </span>
+          )}
+          <svg
+            viewBox="0 0 24 24"
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            aria-hidden="true"
+            className={`transition-transform ${filtersOpen ? "rotate-180" : ""}`}
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </button>
+        {anyFilter && <TextButton onClick={resetFilters}>{t.resetFilters}</TextButton>}
+        {anyFilter && matches === 0 && <span className="text-sm text-ink-3">{t.noMatches}</span>}
+      </div>
+      {filtersOpen && (
+        <div id="shipment-filters" className="flex flex-wrap gap-x-8">
           {/* Each group has its own small caption on its own line, so both start at the same left edge. */}
           <FilterGroup label={t.categoryFilter}>
             {/* Skewed plates like the header tabs and the "Add to plan" button, each as wide as its name. */}
@@ -249,9 +322,15 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
               ))}
             </div>
           </FilterGroup>
-          {anyFilter && matches === 0 && <p className="mt-2 text-sm text-ink-3">{t.noMatches}</p>}
-        </Panel>
+        </div>
+      )}
+    </section>
+  );
 
+  return (
+    <div className="mt-6 grid min-h-0 flex-1 gap-3 lg:grid-cols-[25rem_minmax(0,1fr)] lg:grid-rows-[minmax(0,1fr)]">
+      {/* The left column is all for the plan; the filters live in a bar over the tree they filter. */}
+      <aside className="order-2 flex min-h-0 flex-col lg:order-1">
         <PlanPanel
           t={t}
           locale={locale}
@@ -263,11 +342,13 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
           owned={owned}
           onOwned={setOwned}
         />
-
       </aside>
 
-      <div className="order-1 h-[70dvh] min-h-0 lg:order-2 lg:h-auto">
-        <ShipmentTree
+      <div className="order-1 flex h-[70dvh] min-h-0 flex-col gap-2 lg:order-2 lg:h-auto">
+        {!full && filterBar}
+
+        <div className="min-h-0 flex-1">
+          <ShipmentTree
           nodes={tree.nodes}
           blocks={tree.blocks}
           width={tree.width}
@@ -282,6 +363,9 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
           onSelect={onSelect}
           onHover={setHovered}
           focus={focus}
+          full={full}
+          onFull={setFull}
+          toolbar={filterBar}
           overlay={
             active && (
               <ShipmentCard
@@ -299,6 +383,7 @@ export function ShipmentPlanner({ nodes, blocks, width, height, locale, t }: Pro
             )
           }
         />
+        </div>
       </div>
     </div>
   );
@@ -454,15 +539,7 @@ function PlanPanel({ t, locale, plan, byId, onShow, onRemove, onReset, owned, on
               </tbody>
             </table>
           </div>
-          {plan.settlement !== null && plan.rented.length > 0 && (
-            <p className="mt-3 shrink-0 rounded border-l-2 border-accent bg-field px-2.5 py-1.5 text-xs text-ink-2">
-              {t.rentHint
-                .replace("{n}", String(plan.settlement))
-                .replace("{levels}", plan.rented.map(plotLevel).join(" → "))
-                .replace("{price}", money(plan.rent, locale))}
-            </p>
-          )}
-          <div className="mt-2 grid shrink-0 grid-cols-3 gap-1.5">
+          <div className="mt-3 grid shrink-0 grid-cols-3 gap-1.5">
             <Stat label={t.total} wide>
               <span className="display text-2xl text-accent">{money(plan.total, locale)}</span>
               <span className="block text-xs text-ink-3">

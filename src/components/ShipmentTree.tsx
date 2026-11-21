@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { memo, useEffect, useMemo, useRef, type CSSProperties, type ReactNode } from "react";
 import { money } from "@/lib/format";
 import type { Dict } from "@/lib/i18n";
 import { DEFAULT_LAYOUT, edgePath } from "@/lib/shipmentLayout";
@@ -68,6 +68,11 @@ interface Props {
   focus: FocusRequest | null;
   /** Shown in the bottom-left corner of the view (the shipment card), also in full screen. */
   overlay?: ReactNode;
+  /** Full screen mode, controlled by the page. */
+  full: boolean;
+  onFull: (full: boolean) => void;
+  /** Shown along the top of the canvas in full screen only (the filter bar; normally it sits above the canvas). */
+  toolbar?: ReactNode;
 }
 
 type State = "idle" | "pinned" | "related" | "dim";
@@ -134,7 +139,7 @@ function Icon({ d }: { d: string }) {
 }
 
 /** The pannable and zoomable canvas with the whole tree. State and the side panel live in ShipmentPlanner. */
-export function ShipmentTree({ nodes, blocks, width, height, locale, t, pinned, related, inPlan, picked, faded, onSelect, onHover, focus, overlay }: Props) {
+export function ShipmentTree({ nodes, blocks, width, height, locale, t, pinned, related, inPlan, picked, faded, onSelect, onHover, focus, overlay, full, onFull, toolbar }: Props) {
   const byId = useMemo(() => new Map(nodes.map((n) => [n.id, n])), [nodes]);
   const content = useMemo(() => ({ w: width, h: height }), [width, height]);
   const { viewport, layer, scale, ready, zoomIn, zoomOut, fit, reveal, frame, onClickCapture } = usePanZoom(content);
@@ -150,7 +155,7 @@ export function ShipmentTree({ nodes, blocks, width, height, locale, t, pinned, 
   }, [focus, reveal, frame]);
 
   // Full screen: the same canvas becomes a dialog over the whole window, so the zoom and position are kept.
-  const [full, setFull] = useState(false);
+  // The state belongs to the page (it shows the filters over the canvas in full screen).
   useEffect(() => {
     if (!full) return;
     const root = document.documentElement;
@@ -158,14 +163,15 @@ export function ShipmentTree({ nodes, blocks, width, height, locale, t, pinned, 
     root.style.overflow = "hidden";
     viewport.current?.focus();
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setFull(false);
+      // Esc in the search field clears the text first (it marks the event as handled); only a plain Esc leaves full screen.
+      if (e.key === "Escape" && !e.defaultPrevented) onFull(false);
     };
     window.addEventListener("keydown", onKey);
     return () => {
       root.style.overflow = overflow;
       window.removeEventListener("keydown", onKey);
     };
-  }, [full, viewport]);
+  }, [full, onFull, viewport]);
 
   const costs = useMemo(
     () => new Map(nodes.map((n) => [n.id, n.cost === 0 ? t.free : money(n.cost, locale)])),
@@ -254,15 +260,22 @@ export function ShipmentTree({ nodes, blocks, width, height, locale, t, pinned, 
         ))}
       </div>
 
+      {full && toolbar && (
+        <div data-no-pan className="absolute left-3 right-3 top-3 z-10 shadow-xl">
+          {toolbar}
+        </div>
+      )}
+
       {overlay && (
         <div data-no-pan className="absolute bottom-3 left-3 z-10 w-[min(22rem,calc(100%-1.5rem))]">
           {overlay}
         </div>
       )}
 
-      {/* On a phone the card takes the bottom, so the zoom buttons move to the top right. */}
+      {/* On a phone the card takes the bottom, so the zoom buttons move to the top right
+          (in full screen the filter bar is at the top, so they stay at the bottom). */}
       <div
-        className="absolute right-3 top-3 z-10 flex items-center gap-1 sm:bottom-3 sm:top-auto"
+        className={`absolute right-3 z-10 flex items-center gap-1 ${full ? "bottom-3" : "top-3 sm:bottom-3 sm:top-auto"}`}
         data-no-pan
       >
         <span className="mr-1 text-xs tabular-nums text-ink-3" aria-live="off">
@@ -283,7 +296,7 @@ export function ShipmentTree({ nodes, blocks, width, height, locale, t, pinned, 
           aria-label={full ? t.exitFullscreen : t.fullscreen}
           title={full ? t.exitFullscreen : t.fullscreen}
           aria-pressed={full}
-          onClick={() => setFull((v) => !v)}
+          onClick={() => onFull(!full)}
         >
           {full ? <Icon d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" /> : <Icon d="M4 9V4h5M4 4l6 6M20 9V4h-5M20 4l-6 6M4 15v5h5M4 20l6-6M20 15v5h-5M20 20l-6-6" />}
         </button>

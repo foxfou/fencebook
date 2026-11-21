@@ -62,10 +62,10 @@ export default async function ShipmentsPage({ params }: { params: Params }) {
   });
   const blocks: TreeBlock[] = layout.blocks.map((b) => ({ ...b, label: t.shipments.categories[b.id] ?? b.id }));
 
-  // The same container and heading as the items page. On a wide screen the page also takes exactly the screen height
-  // under the header, so the whole tree area is visible without scrolling.
+  // The same container and heading as the items page. On a wide screen the page takes exactly the screen height
+  // between the header and the one-line footer (data-app-page, see globals.css), so nothing scrolls.
   return (
-    <div className={`${PAGE_CONTAINER} flex flex-col lg:h-[calc(100dvh-var(--header-h))]`}>
+    <div data-app-page className={`${PAGE_CONTAINER} flex flex-col lg:h-[calc(100dvh-var(--header-h)-var(--footer-compact-h))]`}>
       {/* Without JavaScript the tree cannot be fitted to the screen, so it stays visible at full size. */}
       <noscript>
         <style>{`.snode-layer{opacity:1!important}.shipment-viewport{overflow:auto!important;touch-action:auto!important}`}</style>
