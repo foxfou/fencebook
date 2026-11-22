@@ -4,6 +4,7 @@ import { memo, useEffect, useMemo, useRef, type CSSProperties, type ReactNode } 
 import { money } from "@/lib/format";
 import type { Dict } from "@/lib/i18n";
 import { DEFAULT_LAYOUT, edgePath } from "@/lib/shipmentLayout";
+import { iconSrc } from "@/lib/icons";
 import type { ShipmentNode } from "@/lib/shipments";
 import { usePanZoom } from "@/lib/usePanZoom";
 import { Vignette } from "./Vignette";
@@ -115,7 +116,7 @@ const Tile = memo(function Tile({ node, state, plan, cost, jailLabel, onSelect, 
       <span className="snode-tile">
         {node.hasIcon && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={`/icons/${node.item}.png`} alt="" loading="lazy" decoding="async" draggable={false} />
+          <img src={iconSrc(node.item)} alt="" loading="lazy" decoding="async" draggable={false} />
         )}
         {node.tier !== null && <span className="snode-tier">{ROMAN[node.tier]}</span>}
         {plan === "picked" && <span className="snode-check">✓</span>}
