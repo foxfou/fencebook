@@ -9,6 +9,10 @@
 		"html_handling": "auto-trailing-slash",
 		"not_found_handling": "404-page"
 	},
+	// Workers Logs / metrics in the dashboard. Kept here so a deploy does not reset it.
+	"observability": {
+		"enabled": true
+	},
 	// Subdomain on the funchosa.com zone. The zone must be in the same Cloudflare account.
 	// custom_domain creates the DNS record and the certificate on deploy.
 	"routes": [
