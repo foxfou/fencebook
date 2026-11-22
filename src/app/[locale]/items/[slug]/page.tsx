@@ -12,6 +12,7 @@ import { itemOverview } from "@/lib/overviews";
 import { parsePurchase } from "@/lib/purchase";
 import { categoryRanks } from "@/lib/ranks";
 import { alternates, clip, shareTags } from "@/lib/seo";
+import { iconSrc } from "@/lib/icons";
 import { computePlan } from "@/lib/shipments";
 import { shipmentsData, shipmentsGraph } from "@/lib/shipmentsData";
 import { similarItems } from "@/lib/similar";
@@ -324,7 +325,7 @@ export default async function ItemPage({ params }: { params: Params }) {
           <div className="tile tile-solo" style={{ "--w": w, "--h": h, "--r": rarityColor } as CSSProperties}>
             {item.icon && (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={`/icons/${item.id}.png`} alt={name} />
+              <img src={iconSrc(item.id)} alt={name} fetchPriority="high" />
             )}
           </div>
         </div>

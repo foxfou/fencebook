@@ -13,6 +13,7 @@ import {
 } from "@/lib/catalogFilters";
 import { money } from "@/lib/format";
 import type { Dict } from "@/lib/i18n";
+import { iconSrc } from "@/lib/icons";
 import type { ListItem } from "@/lib/types";
 import { SearchField } from "./SearchField";
 
@@ -28,6 +29,8 @@ interface Props {
 }
 
 const RARITY_ORDER = [1, 2, 4, 5, 6, 0];
+// Tiles whose icons load without waiting for scrolling: about the first screen of the grid on a desktop.
+const EAGER_TILES = 24;
 
 function toggled<T>(list: T[], v: T): T[] {
   return list.includes(v) ? list.filter((x) => x !== v) : [...list, v];
@@ -236,7 +239,7 @@ export function ItemBrowser({ items, locale, t, rarities, categoryNav, rememberQ
           <p className="text-ink-2">{t.empty}</p>
         ) : (
           <ul className="inv-grid">
-            {filtered.map((i) => (
+            {filtered.map((i, n) => (
               <li
                 key={i.id}
                 className="tile"
@@ -246,7 +249,13 @@ export function ItemBrowser({ items, locale, t, rarities, categoryNav, rememberQ
                   {i.hasIcon && (
                     // The name is the image's alt text: the link gets a readable name for people and search engines.
                     // eslint-disable-next-line @next/next/no-img-element
-                    <img src={`/icons/${i.id}.png`} alt={i.name} loading="lazy" decoding="async" />
+                    <img
+                      src={iconSrc(i.id)}
+                      alt={i.name}
+                      // The first rows are on screen at once: load them right away, they are the largest paint.
+                      loading={n < EAGER_TILES ? "eager" : "lazy"}
+                      decoding="async"
+                    />
                   )}
                   {i.sell !== null && <span className="price">{money(i.sell, locale)}</span>}
                   <span className="tip">
